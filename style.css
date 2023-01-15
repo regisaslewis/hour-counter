@@ -111,3 +111,20 @@ td {
     border: solid 2px rgba(184, 74, 201, 0.531);
     padding: 3px;
 }
+
+#daysTotal {
+    height: auto;
+}
+
+#totally {
+    font-size: 22px;
+}
+
+#dude {
+    font-size: 30px;
+    color: rgb(232, 224, 223);
+    border: solid 3px white;
+    background-color: rgb(52, 50, 65);
+    box-shadow: black;
+    padding: 4px;
+}
