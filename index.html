@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<hmtl lang="en">
+    <head>
+        <title>Hour Counter</title>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+    </head>
+    <body>
+        <section id="header">
+            <h1>Hour Counter</h1>
+            <h2>Tracking my schoolwork at Flatiron</h2>
+            <h5 class="capsule">by Regis Lewis</h5>
+        </section>
+        <div class="input-div startTime">
+            <p>Start Time:</p>
+            <input id="hr1" name="hr1" type="text" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('hr1', 'mn1')" required>
+            <input id="mn1" name="mn1" type="text" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('mn1', 'hr2')" onkeydown="deleteBack('mn1', 'hr1')" required>
+        </div>
+        <div class="input-div end-time">
+            <p>End Time:</p>
+            <input id="hr2" name="hr2" type="text" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('hr2', 'mn2')" onkeydown="deleteBack('hr2', 'mn1')" required>
+            <input id="mn2" name="mn2" type="text" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('mn2', 'compute')" onkeydown="deleteBack('mn2', 'hr2')" required>
+            <br>
+            <button id="compute">Compute</button>
+        </div>
+        <div id="total">
+            <h2>Total Hours:</h2>
+
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</hmtl>
