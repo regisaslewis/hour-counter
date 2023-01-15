@@ -23,10 +23,11 @@ h1 {
 
 .capsule {
     border: solid 2px black;
-    border-radius: 20px;
-    background-color: rgb(118, 205, 138);
+    border-radius: 5px;
+    background-color: white;
     width: 120px;
     margin: auto auto 10px auto;
+    padding: 3px;
 }
 
 p {
@@ -43,6 +44,11 @@ input::placeholder {
     color: rgba(231, 166, 166, 0.63);
 }
 
+input:focus {
+    border: solid 3px white;
+    margin: -3px;
+}
+
 .input-div {
     display: block;
     width: 200px;
@@ -52,24 +58,56 @@ input::placeholder {
     padding-bottom: 20px;
 }
 
-#compute {
+button {
     border: none;
     width: 100px;
     height: 40px;
     margin-top: 8px;
+    padding: 10px;
     font-size: 20px;
     background-color: black;
     color: white;
 }
 
-#compute:hover {
+button:hover {
+    border: solid 2px black;
+    background-color: white;
+    color: black;
+}
+
+button:focus {
     border: solid 2px black;
     background-color: white;
     color: black;
 }
 
 #total {
-    width: 200px;
+    width: 500px;
+    height: 90px;
     margin: auto;
     text-align: center;
+}
+
+#addToday {
+    font-size: 15px;
+    height: 72px;
+}
+
+.table-div {
+    width: 300px;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+}
+
+th {
+    text-decoration: underline;
+    width: 170px;
+    margin-bottom: 7px;
+}
+
+td {
+    width: 170px;
+    border: solid 2px rgba(184, 74, 201, 0.531);
+    padding: 3px;
 }
