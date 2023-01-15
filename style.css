@@ -124,7 +124,8 @@ td {
     font-size: 30px;
     color: rgb(232, 224, 223);
     border: solid 3px white;
+    border-radius: 2px;
     background-color: rgb(52, 50, 65);
-    box-shadow: black;
+    box-shadow: 4px 2px 2px black;
     padding: 4px;
 }
