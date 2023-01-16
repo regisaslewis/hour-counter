@@ -14,6 +14,14 @@ body {
     text-align: center;
 }
 
+.container {
+    width: 60%;
+    min-width: 500px;
+    margin: auto;
+    display: grid;
+    grid-template: 300px 100px / 1fr 1fr;
+}
+
 h1 {
     font-size: 30px;
     border-bottom: solid 3px white;
@@ -51,7 +59,7 @@ input:focus {
 
 .input-div {
     display: block;
-    width: 200px;
+    width: 250px;
     border: solid 2px black;
     margin: auto;
     text-align: center;
@@ -59,11 +67,10 @@ input:focus {
 }
 
 button {
-    border: none;
+    border: solid 2px black;
     width: 100px;
     height: 40px;
     margin-top: 8px;
-    padding: 10px;
     font-size: 20px;
     background-color: black;
     color: white;
@@ -81,11 +88,15 @@ button:focus {
     color: black;
 }
 
-#total {
-    width: 500px;
-    height: 90px;
+#singleTotal {
+    width: 250px;
+    display: block;
     margin: auto;
     text-align: center;
+}
+
+#total {
+    height: 150px;
 }
 
 #addToday {
@@ -94,13 +105,17 @@ button:focus {
 }
 
 .table-div {
-    width: 300px;
+    width: 250px;
     margin: auto;
     padding: 5px;
     text-align: center;
 }
+table {
+    font-size: 18px;
+}
 
 th {
+    font-size: 22px;
     text-decoration: underline;
     width: 170px;
     margin-bottom: 7px;
@@ -108,7 +123,8 @@ th {
 
 td {
     width: 170px;
-    border: solid 2px rgba(184, 74, 201, 0.531);
+    background-color: white;
+    border: solid 3px black;
     padding: 3px;
 }
 
@@ -118,14 +134,30 @@ td {
 
 #totally {
     font-size: 22px;
+    text-align: center;
 }
 
 #dude {
+    margin-top: 5px;
     font-size: 30px;
+    width: 200px;
+    text-align: center;
     color: rgb(232, 224, 223);
     border: solid 3px white;
     border-radius: 2px;
     background-color: rgb(52, 50, 65);
     box-shadow: 4px 2px 2px black;
     padding: 4px;
+}
+
+#final {
+    display: grid;
+    grid-template-rows: 2fr 1fr 2fr;
+    justify-content: center;
+}
+
+#daysTotal {
+    font-size: 17px;
+    width: 100px;
+    margin: auto;
 }

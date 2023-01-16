@@ -79,20 +79,24 @@ function moveToTable() {
   reset();
 }
 
+let sum = 0;
 function addTotalTimes() {
-  let sum = 0;
-  let tooter = [];
-  let count = document.getElementById("table").rows.length;
-  for (let i = 1; i < count; i++) {
-    tooter = Number(document.getElementById("table").rows[i].cells[1].innerText);
-    sum += tooter;
+  if (sum == 0) {
+    let tooter = [];
+    let count = document.getElementById("table").rows.length;
+    for (let i = 1; i < count; i++) {
+      tooter = Number(document.getElementById("table").rows[i].cells[1].innerText);
+      sum += tooter;
+    }
+    let totally = document.createElement("p");
+    let dude = document.createElement("p");
+    totally.setAttribute("id", "totally");
+    dude.setAttribute("id", "dude");
+    totally.innerText = `Combined total time:`;
+    dude.innerText = `${sum.toFixed(2)} hrs.`
+    document.getElementById("final").appendChild(totally);
+    document.getElementById("final").appendChild(dude);
+  } else {
+    return;
   }
-  let totally = document.createElement("p");
-  let dude = document.createElement("p");
-  totally.setAttribute("id", "totally");
-  dude.setAttribute("id", "dude");
-  totally.innerText = `Combined total time:`;
-  dude.innerText = `${sum.toFixed(2)} hrs.`
-  document.getElementById("tableDiv").appendChild(totally);
-  document.getElementById("tableDiv").appendChild(dude);
 }
