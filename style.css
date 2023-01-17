@@ -20,6 +20,7 @@ body {
     margin: auto;
     display: grid;
     grid-template: 300px 100px / 1fr 1fr;
+    row-gap: 15px;
 }
 
 h1 {
@@ -53,7 +54,7 @@ input::placeholder {
 }
 
 input:focus {
-    border: solid 3px white;
+    border: solid 6px salmon;
     margin: -3px;
 }
 
@@ -66,6 +67,12 @@ input:focus {
     padding-bottom: 20px;
 }
 
+.colon {
+    position: relative;
+    bottom: 5px;
+    display: inline;
+}
+
 button {
     border: solid 2px black;
     width: 100px;
@@ -76,16 +83,11 @@ button {
     color: white;
 }
 
-button:hover {
+button:hover, button:focus {
     border: solid 2px black;
     background-color: white;
     color: black;
-}
-
-button:focus {
-    border: solid 2px black;
-    background-color: white;
-    color: black;
+    box-shadow: 3px 2px 2px black;
 }
 
 #singleTotal {
@@ -99,9 +101,13 @@ button:focus {
     height: 150px;
 }
 
+#hours {
+    margin: auto;
+    font-size: 30px;
+}
+
 #addToday {
     font-size: 15px;
-    height: 72px;
 }
 
 .table-div {

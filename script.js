@@ -79,8 +79,10 @@ function moveToTable() {
   reset();
 }
 
-let sum = 0;
+let sum = -1;
 function addTotalTimes() {
+  sum++;
+  document.getElementById("daysTotal").blur();
   if (sum == 0) {
     let tooter = [];
     let count = document.getElementById("table").rows.length;
