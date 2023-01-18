@@ -27,7 +27,7 @@ div {
     padding: 20px 0 25px 0;
     display: grid;
     grid-template: 300px 100px / 1fr 1fr;
-    row-gap: 15px;
+    row-gap: 25px;
     box-shadow: 4px 4px 5px black;
 }
 
@@ -104,8 +104,9 @@ button {
 
 button:hover, button:focus {
     border: solid 2px black;
-    background-color: white;
+    background-color: salmon;
     color: black;
+    outline: none;
     box-shadow: 3px 2px 2px black;
 }
 
@@ -142,6 +143,8 @@ button:hover, button:focus {
     box-shadow: 4px 4px 5px black;
 }
 table {
+    text-align: justify;
+    padding: 0 2px;
     font-size: 18px;
 }
 
@@ -153,7 +156,7 @@ th {
 }
 
 td {
-    width: 170px;
+    width: 200px;
     background-color: white;
     border: solid 3px black;
     padding: 3px;
@@ -166,21 +169,21 @@ td {
 #totally {
     font-size: 22px;
     text-align: center;
-    margin-top: -10px;
 }
 
 #dude {
-    margin-top: 5px;
-    font-size: 30px;
+    font-size: 36px;
     width: 180px;
     height: 45px;
     text-align: center;
-    color: rgb(232, 224, 223);
-    border: solid 3px white;
+    margin: auto;
+    color: rgb(21, 149, 130);
+    border: solid 3px black;
     border-radius: 2px;
-    background-color: rgb(52, 50, 65);
-    box-shadow: 4px 2px 2px black;
-    padding: 4px;
+    background-color: white;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.454);
+    padding: 10px auto;
+    text-shadow: 2px 2px 2px black;
 }
 
 #diviate {
@@ -191,16 +194,16 @@ td {
     position: relative;
     left: 43px;
     width: 500px;
+    height: auto;
     padding-top: 20px;
+    padding-bottom: 20px;
     box-shadow: 4px 4px 5px black;
     background: rgb(21, 149, 130);
-    display: grid;
-    grid-template-rows: 2fr 1fr 2fr;
-    justify-content: center;
+    display: block;
+    text-align: center;
 }
 
 #daysTotal {
     font-size: 17px;
-    width: 100px;
     margin: auto;
 }

@@ -16,9 +16,11 @@ function autotab (input1, input2) {
 }
 
 function deleteBack (inp1, inp2) {
-  document.getElementById(inp1).addEventListener("keyup", function (event) {
-    if (event.key === "Backspace" && document.getElementById(inp1).value.length === 0) {
+  document.getElementById(inp1).addEventListener("keydown", function (event) {
+    if (document.getElementById(inp1).value.length === 0) {
+      if (event.key === "Backspace") {
       document.getElementById(inp2).focus();
+      }
     }
   })
 }
