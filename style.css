@@ -191,8 +191,6 @@ td {
 }
 
 #finalDiv {
-    position: relative;
-    left: 43px;
     width: 500px;
     height: auto;
     padding-top: 20px;
