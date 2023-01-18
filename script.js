@@ -96,8 +96,8 @@ function addTotalTimes() {
     dude.setAttribute("id", "dude");
     totally.innerText = `Combined total time:`;
     dude.innerText = `${sum.toFixed(2)} hrs.`
-    document.getElementById("final").appendChild(totally);
-    document.getElementById("final").appendChild(dude);
+    document.getElementById("finalDiv").appendChild(totally);
+    document.getElementById("finalDiv").appendChild(dude);
   } else {
     return;
   }

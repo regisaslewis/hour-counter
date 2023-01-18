@@ -1,5 +1,5 @@
 body {
-    background: lightblue;
+    background: rgb(21, 149, 130);
     width: 100%;
     margin: auto;
     font-family: Arial, Helvetica, sans-serif;
@@ -11,16 +11,24 @@ body {
     margin: 10px auto;
     border: solid 6px black;
     background-color: rgb(206, 123, 108);
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.454);
     text-align: center;
+}
+
+div {
+    border: solid 2px goldenrod;
+    z-index: 2;
 }
 
 .container {
     width: 60%;
     min-width: 500px;
     margin: auto;
+    padding: 20px 0 25px 0;
     display: grid;
     grid-template: 300px 100px / 1fr 1fr;
     row-gap: 15px;
+    box-shadow: 4px 4px 5px black;
 }
 
 h1 {
@@ -45,26 +53,37 @@ p {
 }
 
 input {
+    border: none;
+    background: none;
     width: 50px;
     font-size: 40px;
 }
 
 input::placeholder {
-    color: rgba(231, 166, 166, 0.63);
+    color: rgb(214, 107, 107);
 }
 
 input:focus {
-    border: solid 6px salmon;
+    outline: none;
+    border: solid 3px salmon;
     margin: -3px;
 }
 
 .input-div {
     display: block;
     width: 250px;
-    border: solid 2px black;
+    background-color: rgb(233, 223, 223);
+    border: solid 5px black;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.454);
     margin: auto;
     text-align: center;
     padding-bottom: 20px;
+}
+
+.time-input {
+    border: solid 2px black;
+    width: 150px;
+    margin: auto;
 }
 
 .colon {
@@ -95,9 +114,12 @@ button:hover, button:focus {
     display: block;
     margin: auto;
     text-align: center;
+    box-shadow: 4px 4px 5px black;
 }
 
 #total {
+    border: none;
+    border-bottom: solid 2px goldenrod;
     height: 150px;
 }
 
@@ -108,6 +130,7 @@ button:hover, button:focus {
 
 #addToday {
     font-size: 15px;
+    margin-bottom: 8px;
 }
 
 .table-div {
@@ -115,6 +138,8 @@ button:hover, button:focus {
     margin: auto;
     padding: 5px;
     text-align: center;
+    background: rgb(21, 149, 130);
+    box-shadow: 4px 4px 5px black;
 }
 table {
     font-size: 18px;
@@ -141,12 +166,14 @@ td {
 #totally {
     font-size: 22px;
     text-align: center;
+    margin-top: -10px;
 }
 
 #dude {
     margin-top: 5px;
     font-size: 30px;
-    width: 200px;
+    width: 180px;
+    height: 45px;
     text-align: center;
     color: rgb(232, 224, 223);
     border: solid 3px white;
@@ -156,7 +183,17 @@ td {
     padding: 4px;
 }
 
-#final {
+#diviate {
+    border: none;
+}
+
+#finalDiv {
+    position: relative;
+    left: 43px;
+    width: 500px;
+    padding-top: 20px;
+    box-shadow: 4px 4px 5px black;
+    background: rgb(21, 149, 130);
     display: grid;
     grid-template-rows: 2fr 1fr 2fr;
     justify-content: center;
