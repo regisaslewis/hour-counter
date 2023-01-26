@@ -240,7 +240,7 @@ td {
         width: 96%;
     }
 
-    #compute {
+    button {
         font-size: 14x;
         padding: 2px;
     }
@@ -257,6 +257,10 @@ td {
 
     #finalDiv {
         width: 150px;
+    }
+
+    #hours {
+        margin-bottom: 3px;
     }
 
     #dude {
