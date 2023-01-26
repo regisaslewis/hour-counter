@@ -53,6 +53,11 @@ function totalTime(hr1, mn1, hr2, mn2) {
 function addHours() {
     hours.innerText = totalTime();
     document.getElementById("total").appendChild(hours);
+    if (hours.innerText === "Invalid Times") {
+      hours.style.color = "rgb(247, 238, 152)";
+      hours.style.backgroundColor = "rgb(198, 0, 69)";
+      hours.style.width = "90%";
+    }
 }
 
 document.getElementById("compute").addEventListener("keyup", function (event) {
@@ -108,6 +113,11 @@ function addTotalTimes() {
     clear.setAttribute("id", "clear");
     clear.setAttribute("onclick", "clearFunction()");
     document.getElementById("finalDiv").appendChild(clear);
+    if (dude.innerText === "NaN hrs.") {
+      dude.style.backgroundColor = "rgb(198, 0, 69)";
+      dude.style.color = "rgb(247, 238, 152)";
+      dude.innerText = "Invalid";
+    }
   } else {
     return;
   }

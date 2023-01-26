@@ -61,6 +61,11 @@ input {
     text-align: center;
 }
 
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 input::placeholder {
     color: rgb(214, 107, 107);
 }
@@ -223,7 +228,8 @@ td {
 }
 
 #reset:hover {
-    background-color: rgb(21, 149, 130);
+    background-color: rgb(198, 0, 69);
+    color: rgb(247, 238, 152);
 }
 
 @media only screen and (max-width: 1170px) {
@@ -240,7 +246,7 @@ td {
     }
 
     #compute {
-        font-size: 17x;
+        font-size: 15x;
     }
 
     input {
@@ -270,5 +276,9 @@ td {
         height: 30px;
         font-size: 0.94rem;
         left: 50%;
+    }
+
+    #clear {
+        font-size: 15px;
     }
 }
