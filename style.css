@@ -61,15 +61,6 @@ input {
     text-align: center;
 }
 
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type=number] {
-    -moz-appearance: textfield;
-  }
-
 input::placeholder {
     color: rgb(214, 107, 107);
 }
@@ -254,6 +245,7 @@ td {
     }
 
     input {
+        
         width: 30px;
         font-size: 20px;
     }
