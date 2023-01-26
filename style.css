@@ -124,11 +124,10 @@ button:hover, button:focus {
 #total {
     border: none;
     border-bottom: solid 2px goldenrod;
-    height: 150px;
 }
 
 #hours {
-    margin: auto;
+    margin: -10px auto 20px auto;
     font-size: 30px;
 }
 
@@ -257,10 +256,6 @@ td {
 
     #finalDiv {
         width: 150px;
-    }
-
-    #hours {
-        margin-bottom: 3px;
     }
 
     #dude {
