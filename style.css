@@ -142,6 +142,7 @@ button:hover, button:focus {
     background: rgb(21, 149, 130);
     box-shadow: 4px 4px 5px black;
 }
+
 table {
     text-align: left;
     padding: 0 2px;
@@ -202,7 +203,21 @@ td {
     text-align: center;
 }
 
-#daysTotal {
+#daysTotal, #clear {
     font-size: 17px;
     margin: auto;
+}
+
+#clear {
+    margin-top: 15px;
+}
+
+#reset {
+    position: absolute;
+    top: 90px;
+    left: 70%;
+}
+
+#reset:hover {
+    background-color: rgb(21, 149, 130);
 }

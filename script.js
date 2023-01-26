@@ -4,6 +4,10 @@ const addToday = document.getElementById("addToday");
 addToday.addEventListener("click", moveToTable);
 const hours = document.createElement("h2");
 hours.setAttribute("id", "hours");
+let table = document.getElementById("table");
+let newRow = "";
+let newCell = "";
+let newCell2 = "";
 const h1 = document.getElementById("hr1");
 const m1 = document.getElementById("mn1");
 const h2 = document.getElementById("hr2");
@@ -56,7 +60,7 @@ document.getElementById("compute").addEventListener("keyup", function (event) {
     document.getElementById("addToday").focus();
     return addHours();
   } else if ( event.key === "Backspace") {
-    document.getElementById("mn2").focus();
+    m2.focus();
   }
 })
 
@@ -66,16 +70,15 @@ function reset() {
   m1.value = "";
   m2.value = "";
   hours.innerText = "";
-  document.getElementById("hr1").focus();
+  h1.focus();
 }
 
 function moveToTable() {
-  let table = document.getElementById("table");
-  let newRow = table.insertRow(-1); 
-  let newCell = newRow.insertCell(0);
+  newRow = table.insertRow(-1); 
+  newCell = newRow.insertCell(0);
   let hoursText = document.createTextNode(`${h1.value}:${m1.value} - ${h2.value}:${m2.value}`);
   newCell.appendChild(hoursText);
-  let newCell2 = newRow.insertCell(1);
+  newCell2 = newRow.insertCell(1);
   let timeText = document.createTextNode(hours.innerText);
   newCell2.appendChild(timeText);
   reset();
@@ -100,7 +103,20 @@ function addTotalTimes() {
     dude.innerText = `${sum.toFixed(2)} hrs.`
     document.getElementById("finalDiv").appendChild(totally);
     document.getElementById("finalDiv").appendChild(dude);
+    let clear = document.createElement("button");
+    clear.innerText = "Add More";
+    clear.setAttribute("id", "clear");
+    clear.setAttribute("onclick", "clearFunction()");
+    document.getElementById("finalDiv").appendChild(clear);
   } else {
     return;
   }
+}
+
+function clearFunction() {
+  sum = -1;
+  totally.remove();
+  dude.remove();
+  document.getElementById("clear").remove();
+  h1.focus();
 }
