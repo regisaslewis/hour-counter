@@ -241,7 +241,8 @@ td {
     }
 
     #compute {
-        font-size: 15x;
+        font-size: 14x;
+        padding: 2px;
     }
 
     input {
