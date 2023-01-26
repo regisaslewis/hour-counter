@@ -20,17 +20,6 @@ div {
     z-index: 2;
 }
 
-.container {
-    width: 60%;
-    min-width: 500px;
-    margin: auto;
-    padding: 20px 0 25px 0;
-    display: grid;
-    grid-template: 300px 100px / 1fr 1fr;
-    row-gap: 25px;
-    box-shadow: 4px 4px 5px black;
-}
-
 h1 {
     font-size: 30px;
     border-bottom: solid 3px white;
@@ -50,6 +39,17 @@ h1 {
 p {
     font-size: 18px;
     font-weight: bold;
+}
+
+.container {
+    width: 60%;
+    min-width: 500px;
+    margin: auto;
+    padding: 20px 0 25px 0;
+    display: grid;
+    grid-template: 300px 100px / 1fr 1fr;
+    row-gap: 25px;
+    box-shadow: 4px 4px 5px black;
 }
 
 input {
@@ -115,6 +115,7 @@ button:hover, button:focus {
     display: block;
     margin: auto;
     text-align: center;
+    background-color: rgb(21, 149, 130);
     box-shadow: 4px 4px 5px black;
 }
 
@@ -193,7 +194,7 @@ td {
 }
 
 #finalDiv {
-    width: 500px;
+    width: 350px;
     height: auto;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -201,6 +202,7 @@ td {
     background: rgb(21, 149, 130);
     display: block;
     text-align: center;
+    margin: auto;
 }
 
 #daysTotal, #clear {
@@ -214,10 +216,48 @@ td {
 
 #reset {
     position: absolute;
-    top: 90px;
-    left: 70%;
+    top: 30%;
+    left: 48%;
 }
 
 #reset:hover {
     background-color: rgb(21, 149, 130);
+}
+
+@media only screen and (max-width: 1170px) {
+    body {
+        font-size: 0.75em;
+    }
+
+    #header {
+        width: 99%;
+    }
+
+    .container {
+        width: 96%;
+    }
+
+    #singleTotal {
+        width: 125px;
+    }
+
+    #finalDiv {
+        width: 150px;
+    }
+
+    #dude {
+        font-size: 19px;
+        width: 100px;
+        height: 35px;
+        padding-top: 9%;
+        font-weight: bold;
+        text-shadow: none;
+    }
+
+    #reset {
+        width: 65px;
+        height: 30px;
+        font-size: 0.94rem;
+        left: 50%;
+    }
 }

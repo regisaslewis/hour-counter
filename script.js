@@ -42,7 +42,7 @@ function totalTime(hr1, mn1, hr2, mn2) {
     mn1 = Number(m1.value);
     mn2 = Number(m2.value);
     if (hr1 <= 23 && hr2 <= 23 && mn1 <= 59 && mn2 <= 59) {
-     if ( hr1 > hr2) {
+     if ( hr1 > hr2 || (hr1 === hr2 && mn1 > mn2)) {
       hr2 += 24;
     } return (minutesToDecimals(hr2, mn2) - minutesToDecimals(hr1, mn1)).toFixed(2);
   } else {
