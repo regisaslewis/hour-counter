@@ -9,7 +9,7 @@ body {
 #header {
     width: 60%;
     min-width: 450px;
-    margin: 10px auto;
+    margin: 10px auto 10px auto;
     border: solid 6px black;
     background-color: rgb(206, 123, 108);
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.454);
