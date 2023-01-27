@@ -78,15 +78,34 @@ function reset() {
   h1.focus();
 }
 
+function resetNoFocus() {
+  h1.value = "";
+  h2.value = "";
+  m1.value = "";
+  m2.value = "";
+  hours.innerText = "";
+}
+
 function moveToTable() {
-  newRow = table.insertRow(-1); 
-  newCell = newRow.insertCell(0);
-  let hoursText = document.createTextNode(`${h1.value}:${m1.value} - ${h2.value}:${m2.value}`);
-  newCell.appendChild(hoursText);
-  newCell2 = newRow.insertCell(1);
-  let timeText = document.createTextNode(hours.innerText);
-  newCell2.appendChild(timeText);
-  reset();
+  if (window.screen.width >= 600) {
+    newRow = table.insertRow(-1); 
+    newCell = newRow.insertCell(0);
+    let hoursText = document.createTextNode(`${h1.value}:${m1.value} - ${h2.value}:${m2.value}`);
+    newCell.appendChild(hoursText);
+    newCell2 = newRow.insertCell(1);
+    let timeText = document.createTextNode(hours.innerText);
+    newCell2.appendChild(timeText);
+    reset();
+  } else {
+    newRow = table.insertRow(-1); 
+    newCell = newRow.insertCell(0);
+    let hoursText = document.createTextNode(`${h1.value}:${m1.value} - ${h2.value}:${m2.value}`);
+    newCell.appendChild(hoursText);
+    newCell2 = newRow.insertCell(1);
+    let timeText = document.createTextNode(hours.innerText);
+    newCell2.appendChild(timeText);
+    resetNoFocus();
+  }
 }
 
 let sum = -1;
