@@ -228,6 +228,7 @@ td {
 @media only screen and (max-width: 1170px) {
     body {
         font-size: 26px;
+        width: 100%;
     }
 
 
