@@ -258,13 +258,17 @@ td {
     }
 
     button {
-        font-size: 14x;
         padding: 2px;
         width: 50%;
     }
 
     input {
         width: 50px;
+        font-size: 30px;
+    }
+
+    .time-input {
+        font-size: 20px;
     }
 
     #singleTotal {
