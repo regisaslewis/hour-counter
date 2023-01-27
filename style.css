@@ -196,7 +196,6 @@ td {
 
 #finalDiv {
     width: 350px;
-    height: auto;
     padding-top: 20px;
     padding-bottom: 20px;
     box-shadow: 4px 4px 5px black;
@@ -231,6 +230,7 @@ td {
         font-size: 26px;
     }
 
+
     #header {
         width: 99%;
     }
@@ -249,6 +249,14 @@ td {
         padding-bottom: none;
     }
 
+    #header > h2 {
+        font-size: 20px;
+    }
+
+    h5 {
+        font-size: 14px;
+    }
+
     button {
         font-size: 14x;
         padding: 2px;
@@ -261,6 +269,10 @@ td {
 
     #singleTotal {
         width: 96%;
+    }
+
+    #hours {
+        margin-top: -14px;
     }
 
     .table-div {
@@ -288,10 +300,10 @@ td {
     }
 
     #reset {
-        position: relative;
-        top: none;
-        left: none;
-        width: 100%;
+        position: absolute;
+        top: 12%;
+        left: 80%;
+        width: 65px;
         height: 30px;
         font-size: 16px;
     }
