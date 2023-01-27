@@ -237,6 +237,14 @@ td {
 
     .container {
         width: 96%;
+        padding: 10px auto;
+        grid-template: 1fr 1fr / 1fr 1fr;
+        row-gap: none;
+    }
+
+    .input-div {
+        width: auto;
+        height: auto;
     }
 
     button {
@@ -254,6 +262,10 @@ td {
         width: 125px;
     }
 
+    .table-div {
+        width: auto;
+    }
+
     #finalDiv {
         width: 150px;
     }
@@ -268,9 +280,11 @@ td {
     }
 
     #reset {
-        width: 65px;
+        position: relative;
+        top: none;
+        left: none;
+        width: 100%;
         height: 30px;
-        font-size: 0.94rem;
-        left: 50%;
+        font-size: 16px;
     }
 }
