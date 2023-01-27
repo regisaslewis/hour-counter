@@ -237,7 +237,7 @@ td {
     }
 
     .container {
-        width: 96%;
+        width: 80%;
         height: 95%;
         padding: 10px auto;
         grid-template: 60% 40% / 1fr 1fr;
@@ -307,7 +307,7 @@ td {
 
     #reset {
         position: absolute;
-        top: 12%;
+        top: 20%;
         left: 80%;
         width: 65px;
         height: 30px;
