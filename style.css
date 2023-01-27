@@ -240,7 +240,7 @@ td {
         width: 80%;
         height: 95%;
         padding: 10px auto;
-        grid-template: 60% 40% / 1fr 1fr;
+        grid-template: 1fr / 1fr;
         row-gap: none;
     }
 
@@ -265,12 +265,12 @@ td {
 
     input {
         width: 50px;
-        font-size: 22px;
+        font-size:30px;
     }
 
     .time-input {
-        width: 90%;
-        font-size: 14px;
+        width: 75%;
+        font-size: 20px;
     }
 
     #singleTotal {
