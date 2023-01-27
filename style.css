@@ -269,6 +269,7 @@ td {
     }
 
     .time-input {
+        width: 90%;
         font-size: 14px;
     }
 
