@@ -57,6 +57,10 @@ function addHours() {
       hours.style.color = "rgb(247, 238, 152)";
       hours.style.backgroundColor = "rgb(198, 0, 69)";
       hours.style.width = "90%";
+    } else {
+      hours.style.color = "black";
+      hours.style.backgroundColor = "rgb(21, 149, 130)";
+      hours.style.width = "90%";
     }
 }
 
@@ -96,7 +100,7 @@ function moveToTable() {
       newCell2 = newRow.insertCell(1);
       let timeText = document.createTextNode(hours.innerText);
       newCell2.appendChild(timeText);
-      reset();
+      reset(); 
     } else {
       newRow = table.insertRow(-1); 
       newCell = newRow.insertCell(0);
@@ -108,7 +112,7 @@ function moveToTable() {
      resetNoFocus();
     }
   } else {
-    alert("Compute Times First!");
+    return "Invalid Times";
   }
 }
 
