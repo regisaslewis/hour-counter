@@ -12,7 +12,6 @@ const h1 = document.getElementById("hr1");
 const m1 = document.getElementById("mn1");
 const h2 = document.getElementById("hr2");
 const m2 = document.getElementById("mn2");
-const currentTime = new Date();
 
 
 function autotab (input1, input2) {
@@ -160,9 +159,18 @@ function clearFunction() {
   h1.focus();
 }
 function showTime() {
-  let timeShow = `${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
+  let currentTime = new Date();
+  let currentHour = ("0" + currentTime.getHours()).slice(-2);
+  let currentMin = ("0" + currentTime.getMinutes()).slice(-2);
+  let timeShow = `${currentHour}:${currentMin}`;
   document.getElementById("timeNow").innerHTML = timeShow;
-  return timeShow;
-
 }
+function showSeconds() {
+  let currentTime = new Date();
+  let currentSec = ":"+ ("0" + currentTime.getSeconds()).slice(-2);
+  let showSec = currentSec;
+  document.getElementById("seconds").innerHTML = showSec;
+}
+
 setInterval(showTime, 1000);
+setInterval(showSeconds, 1000);
