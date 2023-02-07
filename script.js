@@ -12,6 +12,8 @@ const h1 = document.getElementById("hr1");
 const m1 = document.getElementById("mn1");
 const h2 = document.getElementById("hr2");
 const m2 = document.getElementById("mn2");
+const currentTime = new Date();
+
 
 function autotab (input1, input2) {
   if (document.getElementById(input1).value.length == 2) {
@@ -157,3 +159,5 @@ function clearFunction() {
   document.getElementById("clear").remove();
   h1.focus();
 }
+
+document.getElementById(currentTime).textContent = `${currentTime.getHours()}:${currentTime.getMinutes()}`
