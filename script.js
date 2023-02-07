@@ -159,5 +159,10 @@ function clearFunction() {
   document.getElementById("clear").remove();
   h1.focus();
 }
+function showTime() {
+  let timeShow = `${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
+  document.getElementById("timeNow").innerHTML = timeShow;
+  return timeShow;
 
-document.getElementById(currentTime).textContent = `${currentTime.getHours()}:${currentTime.getMinutes()}`
+}
+setInterval(showTime, 1000);
