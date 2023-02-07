@@ -240,6 +240,21 @@ td {
     right: 8px;
 }
 
+#currentStart, #currentEnd {
+    display: inline;
+    margin: auto 3px;
+    font-size: 16px;
+    height: 26px;
+}
+
+#twoButtons {
+    text-align: center;
+    width: 300px;
+    margin: auto auto 12px auto;
+    border: none;
+
+}
+
 @media only screen 
     and (device-width: 390px) 
     and (device-height: 844px)

@@ -12,7 +12,8 @@ const h1 = document.getElementById("hr1");
 const m1 = document.getElementById("mn1");
 const h2 = document.getElementById("hr2");
 const m2 = document.getElementById("mn2");
-
+const startBtn = document.getElementById("currentStart");
+const endBtn = document.getElementById("currentEnd");
 
 function autotab (input1, input2) {
   if (document.getElementById(input1).value.length == 2) {
@@ -158,6 +159,7 @@ function clearFunction() {
   document.getElementById("clear").remove();
   h1.focus();
 }
+
 function showTime() {
   let currentTime = new Date();
   let currentHour = ("0" + currentTime.getHours()).slice(-2);
@@ -165,6 +167,35 @@ function showTime() {
   let timeShow = `${currentHour}:${currentMin}`;
   document.getElementById("timeNow").innerHTML = timeShow;
 }
+
+function giveTimeStart() {
+  let currentTime = new Date();
+  let currentHour = ("0" + currentTime.getHours()).slice(-2);
+  let currentMin = ("0" + currentTime.getMinutes()).slice(-2);
+  h1.value = currentHour;
+  m1.value = currentMin;
+  return;
+}
+
+function giveTimeEnd() {
+  let currentTime = new Date();
+  let currentHour = ("0" + currentTime.getHours()).slice(-2);
+  let currentMin = ("0" + currentTime.getMinutes()).slice(-2);
+  h2.value = currentHour;
+  m2.value = currentMin;
+  return;
+}
+
+startBtn.addEventListener("click", function () {
+  giveTimeStart();
+  startBtn.blur();
+})
+
+endBtn.addEventListener("click", function () {
+  giveTimeEnd();
+  endBtn.blur();
+})
+
 function showSeconds() {
   let currentTime = new Date();
   let currentSec = ":"+ ("0" + currentTime.getSeconds()).slice(-2);
