@@ -44,7 +44,7 @@ p {
 
 .container {
     width: 60%;
-    min-width: 500px;
+    min-width: 770px;
     margin: auto;
     padding: 20px 0 25px 0;
     display: grid;
@@ -217,7 +217,7 @@ td {
 #reset {
     position: absolute;
     top: 44.5%;
-    left: 46.5%;
+    left: 45.5%;
 }
 
 #reset:hover {
@@ -229,6 +229,7 @@ td {
     display: flex;
     justify-content: space-evenly;
     width: 20%;
+    min-width: 350px;
     margin: 15px auto;
     box-shadow: 4px 4px 5px black;
 }
