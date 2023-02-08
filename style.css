@@ -228,8 +228,7 @@ td {
 #clock {
     display: flex;
     justify-content: space-evenly;
-    width: 20%;
-    min-width: 350px;
+    width: 290px;
     margin: 15px auto;
     box-shadow: 4px 4px 5px black;
 }

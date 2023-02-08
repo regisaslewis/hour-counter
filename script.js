@@ -165,7 +165,7 @@ function showTime() {
   let currentHour = ("0" + currentTime.getHours()).slice(-2);
   let currentMin = ("0" + currentTime.getMinutes()).slice(-2);
   let timeShow = `${currentHour}:${currentMin}`;
-  document.getElementById("timeNow").innerHTML = timeShow;
+  document.getElementById("timeNow").innerText = timeShow;
 }
 
 function giveTimeStart() {
@@ -200,7 +200,7 @@ function showSeconds() {
   let currentTime = new Date();
   let currentSec = ":"+ ("0" + currentTime.getSeconds()).slice(-2);
   let showSec = currentSec;
-  document.getElementById("seconds").innerHTML = showSec;
+  document.getElementById("seconds").innerText = showSec;
 }
 
 setInterval(showTime, 1000);
