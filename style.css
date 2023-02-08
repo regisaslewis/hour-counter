@@ -252,12 +252,13 @@ td {
     width: 300px;
     margin: auto auto 12px auto;
     border: none;
+
 }
 
 @media only screen 
-    and (max-width: 390px)
+    and (device-width: 390px) 
+    and (device-height: 844px)
     and (-webkit-device-pixel-ratio: 3) {
-        
     body {
         font-size: 26px;
         width: 100%;
@@ -271,10 +272,11 @@ td {
 
     .container {
         width: 90%;
-        min-width: 200px;
+        min-width: 300px;
         height: 95%;
         padding: 10px auto;
-        grid-template-columns: 1fr;
+        grid-template: 1fr / 1fr;
+        row-gap: none;
     }
 
     .input-div {
@@ -358,6 +360,6 @@ td {
     }
 
     #twoButtons {
-        width: 85%;
+        width: 150px;
     }
 }
