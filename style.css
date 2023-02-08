@@ -256,8 +256,8 @@ td {
 }
 
 @media only screen 
-    and (device-width: 428px) 
-    and (device-height: 926px)
+    and (device-width: 500px) 
+    and (device-height: 1000x)
     and (-webkit-device-pixel-ratio: 3) {
     body {
         font-size: 26px;
