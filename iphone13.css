@@ -115,4 +115,16 @@
         margin-left: 3px;
         margin-right: 0;
     }
+
+    #today-cont {
+        display: none;
+    }
+
+    #database {
+        display: none;
+    }
+
+    #display-container {
+        display: none;
+    }
 }
