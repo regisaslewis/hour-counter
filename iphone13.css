@@ -124,7 +124,11 @@
         display: none;
     }
 
-    #display-container {
+    #database-container {
+        display: none;
+    }
+
+    #add-to-DB {
         display: none;
     }
 }
