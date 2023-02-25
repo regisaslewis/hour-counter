@@ -273,7 +273,22 @@ function viewDatabaseAll() {
           dataDiv.className = "data-div";
           dataDiv.id = `time-info${e.id}`;
           dataDiv.innerText = `Date: ${e.date}  \n Start Time: ${e.startTime} \n End Time: ${e.endTime} \n Total Hours: ${e.total}`;
-        popUpAll.appendChild(dataDiv)
+
+          function allowEdit() {
+            document.querySelector("#hidden-form").style.display = "inline-block";
+            document.querySelector("#id-info").textContent = `ID# ${e.id}`
+            document.querySelector("#ed1").value = e.date[0] + e.date[1];
+            document.querySelector("#ed2").value = e.date[3] + e.date[4];
+            document.querySelector("#ed3").value = e.date[6] + e.date[7];
+            document.querySelector("#est1").value = e.startTime[0] + e.startTime[1];
+            document.querySelector("#est2").value = e.startTime[3] + e.startTime[4];
+            document.querySelector("#eet1").value = e.endTime[0] + e.endTime[1];
+            document.querySelector("#eet2").value = e.endTime[3] + e.endTime[4];
+            document.querySelector("#eTotal").value = e.total;
+          }
+
+          dataDiv.addEventListener("click", allowEdit);
+        popUpAll.appendChild(dataDiv);
         })
       })
       .catch((error) => {
@@ -565,3 +580,4 @@ dbTotalBtn.addEventListener("click", () => {
   tableScroll(popUpTotal);
   dbTotalBtn.blur();
 })
+

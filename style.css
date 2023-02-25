@@ -112,7 +112,7 @@ input:focus {
     display: inline;
 }
 
-button {
+button, .button {
     border: solid 2px black;
     width: 100px;
     height: 40px;
@@ -122,7 +122,7 @@ button {
     color: white;
 }
 
-button:hover, button:focus {
+button:hover, button:focus, .button:hover, .button:focus {
     border: solid 2px black;
     background-color: salmon;
     color: black;
@@ -429,4 +429,53 @@ td {
 
 #vdcb {
     margin: auto;
+}
+
+#hidden-form {
+    background-color: rgb(21, 149, 130);
+    position: absolute;
+    transform: rotate(1deg);
+    display: none;
+    padding: 0 15px 10px 15px;
+    z-index: 23;
+}
+
+form > .datebox {
+    width: 190px;
+}
+
+form > .datebox > input {
+    width: 55px;
+    margin: auto -10px;
+}
+
+.timebox {
+    margin: auto;
+    width: 130px;
+    font-size: 32px;
+    border: solid 2px black;
+    background-color: rgb(233, 223, 223);
+    box-shadow: none;
+}
+
+.timebox > input {
+    width: 50px;
+    margin: auto -10px;
+}
+
+.totalbox {
+    margin: auto;
+    width: 125px;
+    border: solid 2px black;
+    background-color: rgb(233, 223, 223);
+    box-shadow: none;
+}
+
+.totalbox > input {
+    font-size: 26px;
+    width: 120px;
+}
+
+#submit {
+    font-size: 14px;
 }
