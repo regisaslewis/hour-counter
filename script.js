@@ -335,6 +335,22 @@ function viewDatabaseAll() {
                 .then((data) => {
                   tableScroll(document.getElementById(`time-info${e.id}`));
                   document.getElementById(`time-info${e.id}`).innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
+                  ed1.placeholder = data.date[0] + data.date[1];
+                  ed1.value = "";
+                  ed2.placeholder = data.date[3] + data.date[4];
+                  ed2.value = "";
+                  ed3.placeholder = data.date[6] + data.date[7];
+                  ed3.value = "";
+                  est1.placeholder = data.startTime[0] + data.startTime[1];
+                  est1.value = "";
+                  est2.placeholder = data.startTime[3] + data.startTime[4];
+                  est2.value = "";
+                  eet1.placeholder = data.endTime[0] + data.endTime[1];
+                  eet1.value = "";
+                  eet2.placeholder = data.endTime[3] + data.endTime[4];
+                  eet2.value = "";
+                  eTotal.placeholder = data.total;
+                  eTotal.value = "";
                 })
                 .catch((error) => {
                   console.log(error.message);
@@ -580,9 +596,24 @@ function findDate(mm, dd, yy) {
               fetch(`http://localhost:3000/hours/${e.id}`, editConfig)
                 .then((resp) => resp.json())
                 .then((data) => {
-                  tableScroll(document.getElementById(`time-info${e.id}`));
-                  document.getElementById(`time-info${e.id}`).innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
-                  hiddenForm.style.display = "none";
+                  tableScroll(document.getElementById(`view-date-time-info${e.id}`));
+                  document.getElementById(`view-date-time-info${e.id}`).innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
+                  ed1.placeholder = data.date[0] + data.date[1];
+                  ed1.value = "";
+                  ed2.placeholder = data.date[3] + data.date[4];
+                  ed2.value = "";
+                  ed3.placeholder = data.date[6] + data.date[7];
+                  ed3.value = "";
+                  est1.placeholder = data.startTime[0] + data.startTime[1];
+                  est1.value = "";
+                  est2.placeholder = data.startTime[3] + data.startTime[4];
+                  est2.value = "";
+                  eet1.placeholder = data.endTime[0] + data.endTime[1];
+                  eet1.value = "";
+                  eet2.placeholder = data.endTime[3] + data.endTime[4];
+                  eet2.value = "";
+                  eTotal.placeholder = data.total;
+                  eTotal.value = "";
                 })
                 .catch((error) => {
                   console.log(error.message);
