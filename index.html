@@ -64,37 +64,36 @@
         </div>
         <h2 id="database">The Database</h2>
         <div id="hidden-form">
-            <form>
-                <h3 id="id-info">id##</h3>
-                <label for="date">Date:</label>
-                <div class="datebox">
-                    <input name="date" id="ed1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="MM" onkeyup="autotab('ed1', 'ed2')" required>
-                    /
-                    <input name="date" id="ed2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="DD" onkeyup="autotab('ed2', 'ed3')" onkeydown="deleteBack('ed2', 'ed1')" required>
-                    /
-                    <input name="date" id="ed3" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="YY" onkeyup="autotab('ed3', 'est1')" onkeydown="deleteBack('ed3', 'ed2')" required>
-                </div>
-                <br>
-                <label for="start-time">Start Time:</label>
-                <div class="timebox">
-                    <input name="start-time" id="est1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est1', 'est2')" onkeydown="deleteBack('est1', 'ed3')" required>
-                    :
-                    <input name="start-time" id="est2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est2', 'eet1')" onkeydown="deleteBack('est2', 'est1')" required>
-                </div>
-                <br>
-                <label for="end-time">End Time:</label>
-                <div class="timebox">
-                    <input name="end-time" id="eet1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet1', 'eet2')" onkeydown="deleteBack('eet1', 'est2')" required>
-                    :
-                    <input name="end-time" id="eet2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet2', 'eTotal')" onkeydown="deleteBack('eet2', 'eet1')" required>
-                </div>
-                <br>
-                <label for="edit-total">Total Hours:</label>
-                <div class="totalbox">
-                    <input name="edit-total" id="eTotal" type="text" inputmode="numeric" maxlength="5" placeholder="00.00" onkeyup="autotab('eTotal', 'submit')" onkeydown="deleteBack('eTotal', 'eet2')" required>
-                </div>
-                <input id="submit" class="button" type="submit" value="Submit Edit">
-            </form>
+            <h3 id="id-info">id##</h3>
+            <label for="date">Date:</label>
+            <div class="datebox">
+                <input name="date" id="ed1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="MM" onkeyup="autotab('ed1', 'ed2')" required>
+                /
+                <input name="date" id="ed2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="DD" onkeyup="autotab('ed2', 'ed3')" onkeydown="deleteBack('ed2', 'ed1')" required>
+                /
+                <input name="date" id="ed3" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="YY" onkeyup="autotab('ed3', 'est1')" onkeydown="deleteBack('ed3', 'ed2')" required>
+            </div>
+            <br>
+            <label for="start-time">Start Time:</label>
+            <div class="timebox">
+                <input name="start-time" id="est1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est1', 'est2')" onkeydown="deleteBack('est1', 'ed3')" required>
+                :
+                <input name="start-time" id="est2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est2', 'eet1')" onkeydown="deleteBack('est2', 'est1')" required>
+            </div>
+            <br>
+            <label for="end-time">End Time:</label>
+            <div class="timebox">
+                <input name="end-time" id="eet1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet1', 'eet2')" onkeydown="deleteBack('eet1', 'est2')" required>
+                :
+                <input name="end-time" id="eet2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet2', 'eTotal')" onkeydown="deleteBack('eet2', 'eet1')" required>
+            </div>
+            <br>
+            <label for="edit-total">Total Hours:</label>
+            <div class="totalbox">
+                <input name="edit-total" id="eTotal" type="text" inputmode="numeric" maxlength="5" placeholder="00.00" onkeydown="deleteBack('eTotal', 'eet2')" required>
+            </div>
+            <input id="submit" class="button" type="submit" value="Submit Edit" onclick="closeHiddenForm()">
+            <button id="close-form" onclick="closeHiddenForm()">Close</button>
         </div>
         <div id="error-message">Error! Server Issues</div>
         <div id="database-container">

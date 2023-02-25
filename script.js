@@ -20,6 +20,7 @@ const resetBtn = document.getElementById("reset");
 
 resetBtn.addEventListener("click", () => location.reload());
 
+
 function autotab (input1, input2) {
   if (document.getElementById(input1).value.length == 2) {
     document.getElementById(input2).focus();
@@ -240,6 +241,28 @@ const vdYear = document.getElementById("vd3");
 const tdMonth = document.getElementById("td1");
 const tdDay = document.getElementById("td2");
 const tdYear = document.getElementById("td3");
+const hiddenForm = document.getElementById("hidden-form");
+const idInfo = document.querySelector("#id-info");
+let ed1 = document.querySelector("#ed1");
+let ed2 = document.querySelector("#ed2");
+let ed3 = document.querySelector("#ed3");
+let est1 = document.querySelector("#est1");
+let est2 = document.querySelector("#est2");
+let eet1 = document.querySelector("#eet1");
+let eet2 = document.querySelector("#eet2");
+let eTotal = document.querySelector("#eTotal");
+
+function closeHiddenForm() {
+  hiddenForm.style.display = "none";
+}
+
+function closeForm(a=popUpTotal, b=popUpAll, c=popUpTable, d=popUpSearch) {
+  a.style.display = "none";
+  b.style.display = "none";
+  c.style.display = "none";
+  d.style.display = "none";
+  viewDBAllBtn.textContent = "View the whole database";
+}
 
 function tableScroll(div) {
   setTimeout(() => div.scrollIntoView({behavior: "smooth"}), 500);
@@ -253,11 +276,8 @@ function responseFail() {
 // View the Entire db.json contents
 
 function viewDatabaseAll() {
-  popUpTable.style.dispaly = "none";
-  popUpSearch.style.display = "none";
-  popUpTotal.style.display = "none";
+  closeForm(hiddenForm, popUpTable, popUpSearch, popUpTotal);
   popUpTotal.textContent = "";
-
 
   if (popUpAll.style.display === "flex") {
     viewDBAllBtn.textContent = "View the whole database";
@@ -273,21 +293,55 @@ function viewDatabaseAll() {
           dataDiv.className = "data-div";
           dataDiv.id = `time-info${e.id}`;
           dataDiv.innerText = `Date: ${e.date}  \n Start Time: ${e.startTime} \n End Time: ${e.endTime} \n Total Hours: ${e.total}`;
-
+          dataDiv.addEventListener("click", allowEdit);
           function allowEdit() {
-            document.querySelector("#hidden-form").style.display = "inline-block";
-            document.querySelector("#id-info").textContent = `ID# ${e.id}`
-            document.querySelector("#ed1").value = e.date[0] + e.date[1];
-            document.querySelector("#ed2").value = e.date[3] + e.date[4];
-            document.querySelector("#ed3").value = e.date[6] + e.date[7];
-            document.querySelector("#est1").value = e.startTime[0] + e.startTime[1];
-            document.querySelector("#est2").value = e.startTime[3] + e.startTime[4];
-            document.querySelector("#eet1").value = e.endTime[0] + e.endTime[1];
-            document.querySelector("#eet2").value = e.endTime[3] + e.endTime[4];
-            document.querySelector("#eTotal").value = e.total;
+            tableScroll(hiddenForm);
+            hiddenForm.style.display = "inline-block";
+            idInfo.textContent = `ID# ${e.id}`
+            ed1.placeholder = e.date[0] + e.date[1];
+            ed1.value = "";
+            ed2.placeholder = e.date[3] + e.date[4];
+            ed2.value = "";
+            ed3.placeholder = e.date[6] + e.date[7];
+            ed3.value = "";
+            est1.placeholder = e.startTime[0] + e.startTime[1];
+            est1.value = "";
+            est2.placeholder = e.startTime[3] + e.startTime[4];
+            est2.value = "";
+            eet1.placeholder = e.endTime[0] + e.endTime[1];
+            eet1.value = "";
+            eet2.placeholder = e.endTime[3] + e.endTime[4];
+            eet2.value = "";
+            eTotal.placeholder = e.total;
+            eTotal.value = "";
+
+            document.querySelector("#submit").addEventListener("click", () => {
+              let editObj = {
+                date: `${ed1.value}/${ed2.value}/${ed3.value}`,
+                startTime: `${est1.value}:${est2.value}`,
+                endTime: `${eet1.value}:${eet2.value}`,
+                total: Number(eTotal.value)
+              };
+              let editConfig = {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
+                },
+                body: JSON.stringify(editObj)
+              };
+              fetch(`http://localhost:3000/hours/${e.id}`, editConfig)
+                .then((resp) => resp.json())
+                .then((data) => {
+                  tableScroll(document.getElementById(`time-info${e.id}`));
+                  document.getElementById(`time-info${e.id}`).innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
+                })
+                .catch((error) => {
+                  console.log(error.message);
+                }) 
+            })             
           }
 
-          dataDiv.addEventListener("click", allowEdit);
         popUpAll.appendChild(dataDiv);
         })
       })
@@ -316,11 +370,8 @@ function dbit() {
     taDiv.textContent = e.textContent;
     popUpTable.appendChild(taDiv);
     popUpTable.style.display = "grid";
-    popUpAll.style.display = "none";
-    popUpSearch.style.display = "none";
-    popUpTotal.style.display = "none";
+    closeForm(hiddenForm, popUpAll, popUpSearch, popUpTotal);
     popUpTotal.textContent = "";
-    viewDBAllBtn.textContent = "View the whole database";
     tableScroll(popUpTable);
   })
 }
@@ -464,12 +515,11 @@ function postNew() {
 
 serverPostBtn.addEventListener("click", postNew);
 
+// view a list of entries by date
+
 function findDate(mm, dd, yy) {
-  popUpAll.style.display = "none";
-  popUpTable.style.display = "none";
-  popUpTotal.style.display = "none";
+  closeForm(hiddenForm, popUpAll, popUpTable, popUpTotal);
   popUpTotal.textContent = "";
-  viewDBAllBtn.textContent = "View the whole database";
 
   mm = vdMonth.value;
   dd = vdDay.value;
@@ -479,6 +529,10 @@ function findDate(mm, dd, yy) {
     .then((data) => {
       if (data.length === 0) {
         colorSwap(viewDateBtn, "View", "18px");
+        vdMonth.value = "";
+        vdDay.value = "";
+        vdYear.value = "";
+        vdMonth.focus();
       } else {
         data.forEach((e) => {
           let viewDateDiv = document.createElement("div");
@@ -486,8 +540,58 @@ function findDate(mm, dd, yy) {
           viewDateDiv.id = `view-date-time-info${e.id}`;
           viewDateDiv.innerText = `Date: ${e.date}  \n Start Time: ${e.startTime} \n End Time: ${e.endTime} \n Total Hours: ${e.total}`;
           popUpSearch.appendChild(viewDateDiv);
+          viewDateDiv.addEventListener("click", allowEdit);
+          function allowEdit() {
+            tableScroll(hiddenForm);
+            hiddenForm.style.display = "inline-block";
+            idInfo.textContent = `ID# ${e.id}`
+            ed1.placeholder = e.date[0] + e.date[1];
+            ed1.value = "";
+            ed2.placeholder = e.date[3] + e.date[4];
+            ed2.value = "";
+            ed3.placeholder = e.date[6] + e.date[7];
+            ed3.value = "";
+            est1.placeholder = e.startTime[0] + e.startTime[1];
+            est1.value = "";
+            est2.placeholder = e.startTime[3] + e.startTime[4];
+            est2.value = "";
+            eet1.placeholder = e.endTime[0] + e.endTime[1];
+            eet1.value = "";
+            eet2.placeholder = e.endTime[3] + e.endTime[4];
+            eet2.value = "";
+            eTotal.placeholder = e.total;
+            eTotal.value = "";
+
+            document.querySelector("#submit").addEventListener("click", () => {
+              let editObj = {
+                date: `${ed1.value}/${ed2.value}/${ed3.value}`,
+                startTime: `${est1.value}:${est2.value}`,
+                endTime: `${eet1.value}:${eet2.value}`,
+                total: Number(eTotal.value)
+              };
+              let editConfig = {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
+                },
+                body: JSON.stringify(editObj)
+              };
+              fetch(`http://localhost:3000/hours/${e.id}`, editConfig)
+                .then((resp) => resp.json())
+                .then((data) => {
+                  tableScroll(document.getElementById(`time-info${e.id}`));
+                  document.getElementById(`time-info${e.id}`).innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
+                  hiddenForm.style.display = "none";
+                })
+                .catch((error) => {
+                  console.log(error.message);
+                }) 
+            })             
+          }
           if (viewDateDiv.innerText !== "") {
-            viewDateBtn.textContent = "Add";
+            viewDateBtn.textContent = "Add More";
+            viewDateBtn.style.fontSize = "14px";
           }
         })
         popUpSearch.style.display = "flex";
@@ -501,6 +605,7 @@ function findDate(mm, dd, yy) {
           vdYear.value = "";
           vdMonth.focus();
           viewDateBtn.textContent = "View";
+          viewDateBtn.style.fontSize = "18px";
           viewDateClearBtn.remove();
         })
         db2.appendChild(viewDateClearBtn);
@@ -544,9 +649,7 @@ function deleteLastDB() {
 }
 
 function completeTotal() {
-  popUpTable.style.display = "none";
-  popUpSearch.style.display = "none";
-  popUpAll.style.display = "none";
+  closeForm(hiddenForm, popUpTable, popUpSearch, popUpAll);
   viewDBAllBtn.textContent = "View the whole database";
 
 
@@ -564,7 +667,7 @@ function completeTotal() {
         let allHours = sum.reduce(addSum);
         let bigTotalDiv = document.createElement("div")
         bigTotalDiv.id = "big-total-div";
-        bigTotalDiv.innerHTML = `Total Recorded Hours: <strong>${allHours}</strong> <br> Average Hours per Session: <strong>${(allHours / sum.length).toFixed(2)}</strong>`
+        bigTotalDiv.innerHTML = `Total Recorded Hours: <strong>${allHours.toFixed(2)}</strong> <br> Average Hours per Session: <strong>${(allHours / sum.length).toFixed(2)}</strong>`
         popUpTotal.appendChild(bigTotalDiv);
       })
       .catch((error) => {

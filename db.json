@@ -184,10 +184,10 @@
     },
     {
       "id": 27,
-      "date": "01/25/23",
-      "startTime": "20:04",
-      "endTime": "22:32",
-      "total": 2.46
+      "date": "01/26/23",
+      "startTime": "02:04",
+      "endTime": "03:02",
+      "total": 0.96
     },
     {
       "id": 28,
@@ -575,11 +575,25 @@
       "id": 82
     },
     {
+      "id": 83,
+      "date": "01/26/23",
+      "startTime": "19:11",
+      "endTime": "21:12",
+      "total": 1.74
+    },
+    {
       "date": "02/24/23",
-      "startTime": "11:22",
-      "endTime": "22:11",
-      "total": 10.81,
-      "id": 83
+      "startTime": "18:34",
+      "endTime": "20:35",
+      "total": 2.01,
+      "id": 84
+    },
+    {
+      "date": "02/24/23",
+      "startTime": "23:32",
+      "endTime": "02:10",
+      "total": 2.64,
+      "id": 85
     }
   ]
 }
