@@ -433,9 +433,9 @@ td {
 
 #hidden-form {
     background-color: rgb(21, 149, 130);
-    position: sticky;
+    position: fixed;
     border: solid 5px goldenrod;
-    top: 10%;
+    top: 20%;
     right: 60%;
     display: none;
     padding: 0 15px 10px 15px;

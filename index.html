@@ -63,6 +63,36 @@
             <button id="reset">Reset</button>
         </div>
         <h2 id="database">The Database</h2>
+        <div id="error-message">Error! Server Issues</div>
+        <div id="database-container">
+            <div id="db1">
+                <h3>Choose a Date to Post</h3>
+                <button id="date-today">Today's Date</button>
+                <div class="datebox">
+                    <input id="td1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="MM" onkeyup="autotab('td1', 'td2')" required>
+                    /
+                    <input id="td2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="DD" onkeyup="autotab('td2', 'td3')" onkeydown="deleteBack('td2', 'td1')" required>
+                    /
+                    <input id="td3" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="YY" onkeyup="autotab('td3', 'to-server')" onkeydown="deleteBack('td3', 'td2')" required>              
+                </div>
+                <button id="to-server" class="hover db-button" onkeydown="deleteBack('to-server', 'td3')">Post to Server</button>
+            </div>
+            <div id="db2">
+                <h3>Choose a date to view</h3>
+                <div class="datebox">
+                    <input id="vd1" class="date-input" type="text" maxlength="2" placeholder="MM" inputmode="numberic" onkeyup="autotab('vd1', 'vd2')" required>
+                    /
+                    <input id="vd2" class="date-input" type="text" maxlength="2" placeholder="DD" inputmode="numeric" onkeyup="autotab('vd2', 'vd3')" onkeydown="deleteBack('vd2', 'vd1')" required>
+                    /
+                    <input id="vd3" class="date-input" type="text" maxlength="2" placeholder="YY" inputmode="numeric" onkeyup="autotab('vd3', 'view-date')" onkeydown="deleteBack('vd3', 'vd2')" required>              
+                </div>
+                <button id="view-date" class="db-button" onkeydown="deleteBack('view-date', 'vd3')"> View </button>  
+            </div>
+            <div id="db3">
+                <button id="view-db-all">View the whole database</button>
+                <button id="db-total-hours"><strong>TOTAL HOURS</strong></button>
+            </div>
+        </div>
         <div id="hidden-form">
             <h3 id="id-info">id##</h3>
             <label for="date">Date:</label>
@@ -95,36 +125,6 @@
             <input id="submit" class="button" type="submit" value="Submit Edit" onclick="closeHiddenForm()">
             <button id="close-form" onclick="closeHiddenForm()">Close</button>
             <p class="smalltext">Fill all fields, please.</p>
-        </div>
-        <div id="error-message">Error! Server Issues</div>
-        <div id="database-container">
-            <div id="db1">
-                <h3>Choose a Date to Post</h3>
-                <button id="date-today">Today's Date</button>
-                <div class="datebox">
-                    <input id="td1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="MM" onkeyup="autotab('td1', 'td2')" required>
-                    /
-                    <input id="td2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="DD" onkeyup="autotab('td2', 'td3')" onkeydown="deleteBack('td2', 'td1')" required>
-                    /
-                    <input id="td3" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="YY" onkeyup="autotab('td3', 'to-server')" onkeydown="deleteBack('td3', 'td2')" required>              
-                </div>
-                <button id="to-server" class="hover db-button" onkeydown="deleteBack('to-server', 'td3')">Post to Server</button>
-            </div>
-            <div id="db2">
-                <h3>Choose a date to view</h3>
-                <div class="datebox">
-                    <input id="vd1" class="date-input" type="text" maxlength="2" placeholder="MM" inputmode="numberic" onkeyup="autotab('vd1', 'vd2')" required>
-                    /
-                    <input id="vd2" class="date-input" type="text" maxlength="2" placeholder="DD" inputmode="numeric" onkeyup="autotab('vd2', 'vd3')" onkeydown="deleteBack('vd2', 'vd1')" required>
-                    /
-                    <input id="vd3" class="date-input" type="text" maxlength="2" placeholder="YY" inputmode="numeric" onkeyup="autotab('vd3', 'view-date')" onkeydown="deleteBack('vd3', 'vd2')" required>              
-                </div>
-                <button id="view-date" class="db-button" onkeydown="deleteBack('view-date', 'vd3')"> View </button>  
-            </div>
-            <div id="db3">
-                <button id="view-db-all">View the whole database</button>
-                <button id="db-total-hours"><strong>TOTAL HOURS</strong></button>
-            </div>
         </div>
         <div id="pop-up-table">
             <p class="th">Hours</p>
