@@ -433,8 +433,10 @@ td {
 
 #hidden-form {
     background-color: rgb(21, 149, 130);
-    position: absolute;
-    transform: rotate(1deg);
+    position: sticky;
+    border: solid 5px goldenrod;
+    top: 10%;
+    right: 60%;
     display: none;
     padding: 0 15px 10px 15px;
     z-index: 23;
@@ -478,4 +480,10 @@ form > .datebox > input {
 
 #submit {
     font-size: 14px;
+}
+
+.smalltext {
+    font-weight: lighter;
+    font-size: 12px;
+    opacity: 75%; 
 }

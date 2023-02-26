@@ -292,10 +292,11 @@ function viewDatabaseAll() {
           let dataDiv = document.createElement("div");
           dataDiv.className = "data-div";
           dataDiv.id = `time-info${e.id}`;
+          dataDiv.title = "Click to Edit";
+          dataDiv.style.cursor = "default";
           dataDiv.innerText = `Date: ${e.date}  \n Start Time: ${e.startTime} \n End Time: ${e.endTime} \n Total Hours: ${e.total}`;
           dataDiv.addEventListener("click", allowEdit);
           function allowEdit() {
-            tableScroll(hiddenForm);
             hiddenForm.style.display = "inline-block";
             idInfo.textContent = `ID# ${e.id}`
             ed1.placeholder = e.date[0] + e.date[1];
@@ -333,7 +334,6 @@ function viewDatabaseAll() {
               fetch(`http://localhost:3000/hours/${e.id}`, editConfig)
                 .then((resp) => resp.json())
                 .then((data) => {
-                  tableScroll(document.getElementById(`time-info${e.id}`));
                   document.getElementById(`time-info${e.id}`).innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
                   ed1.placeholder = data.date[0] + data.date[1];
                   ed1.value = "";
@@ -553,12 +553,13 @@ function findDate(mm, dd, yy) {
         data.forEach((e) => {
           let viewDateDiv = document.createElement("div");
           viewDateDiv.className = "data-div";
+          viewDateDiv.title = "Click to Edit";
+          viewDateDiv.style.cursor = "default";
           viewDateDiv.id = `view-date-time-info${e.id}`;
           viewDateDiv.innerText = `Date: ${e.date}  \n Start Time: ${e.startTime} \n End Time: ${e.endTime} \n Total Hours: ${e.total}`;
           popUpSearch.appendChild(viewDateDiv);
           viewDateDiv.addEventListener("click", allowEdit);
           function allowEdit() {
-            tableScroll(hiddenForm);
             hiddenForm.style.display = "inline-block";
             idInfo.textContent = `ID# ${e.id}`
             ed1.placeholder = e.date[0] + e.date[1];
@@ -596,7 +597,6 @@ function findDate(mm, dd, yy) {
               fetch(`http://localhost:3000/hours/${e.id}`, editConfig)
                 .then((resp) => resp.json())
                 .then((data) => {
-                  tableScroll(document.getElementById(`view-date-time-info${e.id}`));
                   document.getElementById(`view-date-time-info${e.id}`).innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
                   ed1.placeholder = data.date[0] + data.date[1];
                   ed1.value = "";
