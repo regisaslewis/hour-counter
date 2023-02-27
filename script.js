@@ -1,4 +1,4 @@
-screen.orientation.lock();
+screen.orientation.lock("natural");
 
 // Today's Time Info
 
