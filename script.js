@@ -1,3 +1,5 @@
+screen.orientation.lock();
+
 // Today's Time Info
 
 const compute = document.getElementById("compute");
