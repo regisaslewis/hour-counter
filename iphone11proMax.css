@@ -21,6 +21,7 @@
         padding: 10px auto;
         grid-template: 1fr / 1fr;
         row-gap: none;
+        margin-bottom: 10px;
     }
 
     .input-div {
