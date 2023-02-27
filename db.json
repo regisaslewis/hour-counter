@@ -594,6 +594,34 @@
       "endTime": "02:24",
       "total": 2.87,
       "id": 85
+    },
+    {
+      "date": "02/25/23",
+      "startTime": "15:13",
+      "endTime": "15:53",
+      "total": 0.66,
+      "id": 86
+    },
+    {
+      "date": "02/25/23",
+      "startTime": "22:38",
+      "endTime": "00:12",
+      "total": 1.57,
+      "id": 87
+    },
+    {
+      "date": "02/26/23",
+      "startTime": "15:22",
+      "endTime": "15:53",
+      "total": 0.51,
+      "id": 88
+    },
+    {
+      "date": "02/26/23",
+      "startTime": "23:14",
+      "endTime": "01:42",
+      "total": 2.47,
+      "id": 89
     }
   ]
 }

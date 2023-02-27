@@ -154,7 +154,11 @@ function addTotalTimes() {
     let addToDB = document.createElement("button");
     addToDB.innerText = "Place in Database";
     addToDB.setAttribute("id", "add-to-DB");
-    addToDB.addEventListener("click", dbit);
+    addToDB.addEventListener("click", () => {
+      dbit();
+      clearFunction();
+      tdMonth.focus();
+    });
     document.getElementById("finalDiv").appendChild(addToDB);
     if (dude.innerText === "NaN hrs.") {
       dude.style.backgroundColor = "rgb(198, 0, 69)";
@@ -242,15 +246,6 @@ const tdMonth = document.getElementById("td1");
 const tdDay = document.getElementById("td2");
 const tdYear = document.getElementById("td3");
 const hiddenForm = document.getElementById("hidden-form");
-const idInfo = document.querySelector("#id-info");
-let ed1 = document.querySelector("#ed1");
-let ed2 = document.querySelector("#ed2");
-let ed3 = document.querySelector("#ed3");
-let est1 = document.querySelector("#est1");
-let est2 = document.querySelector("#est2");
-let eet1 = document.querySelector("#eet1");
-let eet2 = document.querySelector("#eet2");
-let eTotal = document.querySelector("#eTotal");
 
 function closeHiddenForm() {
   hiddenForm.style.display = "none";
@@ -298,22 +293,64 @@ function viewDatabaseAll() {
           dataDiv.addEventListener("click", allowEdit);
           function allowEdit() {
             hiddenForm.style.display = "inline-block";
+            hiddenForm.innerHTML = `
+            <h3 id="id-info">id##</h3>
+            <label for="date">Date:</label>
+            <div class="datebox">
+                <input name="date" id="ed1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="MM" onkeyup="autotab('ed1', 'ed2')" autocomplete="off">
+                /
+                <input name="date" id="ed2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="DD" onkeyup="autotab('ed2', 'ed3')" onkeydown="deleteBack('ed2', 'ed1')" autocomplete="off">
+                /
+                <input name="date" id="ed3" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="YY" onkeyup="autotab('ed3', 'est1')" onkeydown="deleteBack('ed3', 'ed2')" autocomplete="off">
+            </div>
+            <br>
+            <label for="start-time">Start Time:</label>
+            <div class="timebox">
+                <input name="start-time" id="est1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est1', 'est2')" onkeydown="deleteBack('est1', 'ed3')" autocomplete="off">
+                :
+                <input name="start-time" id="est2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est2', 'eet1')" onkeydown="deleteBack('est2', 'est1')" autocomplete="off">
+            </div>
+            <br>
+            <label for="end-time">End Time:</label>
+            <div class="timebox">
+                <input name="end-time" id="eet1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet1', 'eet2')" onkeydown="deleteBack('eet1', 'est2')" autocomplete="off">
+                :
+                <input name="end-time" id="eet2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet2', 'eTotal')" onkeydown="deleteBack('eet2', 'eet1')" autocomplete="off">
+            </div>
+            <br>
+            <label for="edit-total">Total Hours:</label>
+            <div class="totalbox">
+                <input name="edit-total" id="eTotal" type="text" inputmode="numeric" maxlength="5" placeholder="00.00" onkeydown="deleteBack('eTotal', 'eet2')" autocomplete="off">
+            </div>
+            <input id="submit" class="button" type="submit" value="Submit Edit" onclick ="closeHiddenForm()">
+            <button id="close-form" onclick="closeHiddenForm()">Close</button>
+            <p class="smalltext">Fill all fields, please.</p>
+            `
+            let idInfo = document.querySelector("#id-info");
+            let ed1 = document.querySelector("#ed1");
+            let ed2 = document.querySelector("#ed2");
+            let ed3 = document.querySelector("#ed3");
+            let est1 = document.querySelector("#est1");
+            let est2 = document.querySelector("#est2");
+            let eet1 = document.querySelector("#eet1");
+            let eet2 = document.querySelector("#eet2");
+            let eTotal = document.querySelector("#eTotal");
             idInfo.textContent = `ID# ${e.id}`
             ed1.placeholder = e.date[0] + e.date[1];
-            ed1.value = "";
             ed2.placeholder = e.date[3] + e.date[4];
-            ed2.value = "";
             ed3.placeholder = e.date[6] + e.date[7];
-            ed3.value = "";
             est1.placeholder = e.startTime[0] + e.startTime[1];
-            est1.value = "";
             est2.placeholder = e.startTime[3] + e.startTime[4];
-            est2.value = "";
             eet1.placeholder = e.endTime[0] + e.endTime[1];
-            eet1.value = "";
             eet2.placeholder = e.endTime[3] + e.endTime[4];
-            eet2.value = "";
             eTotal.placeholder = e.total;
+            ed1.value = "";
+            ed2.value = "";
+            ed3.value = "";
+            est1.value = "";
+            est2.value = "";
+            eet1.value = "";
+            eet2.value = "";
             eTotal.value = "";
 
             document.querySelector("#submit").addEventListener("click", () => {
@@ -334,23 +371,10 @@ function viewDatabaseAll() {
               fetch(`http://localhost:3000/hours/${e.id}`, editConfig)
                 .then((resp) => resp.json())
                 .then((data) => {
-                  document.getElementById(`time-info${e.id}`).innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
-                  ed1.placeholder = data.date[0] + data.date[1];
-                  ed1.value = "";
-                  ed2.placeholder = data.date[3] + data.date[4];
-                  ed2.value = "";
-                  ed3.placeholder = data.date[6] + data.date[7];
-                  ed3.value = "";
-                  est1.placeholder = data.startTime[0] + data.startTime[1];
-                  est1.value = "";
-                  est2.placeholder = data.startTime[3] + data.startTime[4];
-                  est2.value = "";
-                  eet1.placeholder = data.endTime[0] + data.endTime[1];
-                  eet1.value = "";
-                  eet2.placeholder = data.endTime[3] + data.endTime[4];
-                  eet2.value = "";
-                  eTotal.placeholder = data.total;
-                  eTotal.value = "";
+                    let currentDiv = document.getElementById(`time-info${e.id}`);
+                    currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
+                    viewDatabaseAll();
+                    viewDatabaseAll();
                 })
                 .catch((error) => {
                   console.log(error.message);
@@ -378,7 +402,7 @@ viewDBAllBtn.addEventListener("click", () => {
 // Add from Today to the Database
 
 function dbit() {
-  tdMonth.focus();
+  popUpTable.innerHTML = "";
   let tableArr = Array.from(document.querySelectorAll("td"));
   tableArr.forEach((e) => {
     let taDiv = document.createElement("div");
@@ -523,8 +547,6 @@ function postNew() {
   serverPostBtn.style.boxShadow = "none";
   serverPostBtn.style.zIndex = "10";
   popUpTable.style.display = "none";
-  serverPostBtn.removeEventListener("mouseenter", mouseEnter);
-  serverPostBtn.removeEventListener("mouseleave", mouseLeave);
   serverPostBtn.removeEventListener("click", postNew);
 }
 }
@@ -561,25 +583,77 @@ function findDate(mm, dd, yy) {
           viewDateDiv.addEventListener("click", allowEdit);
           function allowEdit() {
             hiddenForm.style.display = "inline-block";
+            hiddenForm.innerHTML = `
+            <h3 id="id-info">id##</h3>
+            <label for="date">Date:</label>
+            <div class="datebox">
+                <input name="date" id="ed1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="MM" onkeyup="autotab('ed1', 'ed2')" autocomplete="off">
+                /
+                <input name="date" id="ed2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="DD" onkeyup="autotab('ed2', 'ed3')" onkeydown="deleteBack('ed2', 'ed1')" autocomplete="off">
+                /
+                <input name="date" id="ed3" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="YY" onkeyup="autotab('ed3', 'est1')" onkeydown="deleteBack('ed3', 'ed2')" autocomplete="off">
+            </div>
+            <br>
+            <label for="start-time">Start Time:</label>
+            <div class="timebox">
+                <input name="start-time" id="est1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est1', 'est2')" onkeydown="deleteBack('est1', 'ed3')" autocomplete="off">
+                :
+                <input name="start-time" id="est2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est2', 'eet1')" onkeydown="deleteBack('est2', 'est1')" autocomplete="off">
+            </div>
+            <br>
+            <label for="end-time">End Time:</label>
+            <div class="timebox">
+                <input name="end-time" id="eet1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet1', 'eet2')" onkeydown="deleteBack('eet1', 'est2')" autocomplete="off">
+                :
+                <input name="end-time" id="eet2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet2', 'eTotal')" onkeydown="deleteBack('eet2', 'eet1')" autocomplete="off">
+            </div>
+            <br>
+            <label for="edit-total">Total Hours:</label>
+            <div class="totalbox">
+                <input name="edit-total" id="eTotal" type="text" inputmode="numeric" maxlength="5" placeholder="00.00" onkeydown="deleteBack('eTotal', 'eet2')" autocomplete="off">
+            </div>
+            <input id="submit" class="button" type="submit" value="Submit Edit" onclick ="closeHiddenForm()">
+            <button id="close-form" onclick="closeHiddenForm()">Close</button>
+            <p class="smalltext">Fill all fields, please.</p>
+            `
+            let idInfo = document.querySelector("#id-info");
+            let ed1 = document.querySelector("#ed1");
+            let ed2 = document.querySelector("#ed2");
+            let ed3 = document.querySelector("#ed3");
+            let est1 = document.querySelector("#est1");
+            let est2 = document.querySelector("#est2");
+            let eet1 = document.querySelector("#eet1");
+            let eet2 = document.querySelector("#eet2");
+            let eTotal = document.querySelector("#eTotal");
             idInfo.textContent = `ID# ${e.id}`
             ed1.placeholder = e.date[0] + e.date[1];
-            ed1.value = "";
             ed2.placeholder = e.date[3] + e.date[4];
-            ed2.value = "";
             ed3.placeholder = e.date[6] + e.date[7];
-            ed3.value = "";
             est1.placeholder = e.startTime[0] + e.startTime[1];
-            est1.value = "";
             est2.placeholder = e.startTime[3] + e.startTime[4];
-            est2.value = "";
             eet1.placeholder = e.endTime[0] + e.endTime[1];
-            eet1.value = "";
             eet2.placeholder = e.endTime[3] + e.endTime[4];
-            eet2.value = "";
             eTotal.placeholder = e.total;
+            ed1.value = "";
+            ed2.value = "";
+            ed3.value = "";
+            est1.value = "";
+            est2.value = "";
+            eet1.value = "";
+            eet2.value = "";
             eTotal.value = "";
 
             document.querySelector("#submit").addEventListener("click", () => {
+              if (document.getElementById("db2").lastChild.textContent === "Clear") {
+                popUpSearch.innerHTML = "";
+                vdMonth.value = "";
+                vdDay.value = "";
+                vdYear.value = "";
+                vdMonth.focus();
+                viewDateBtn.textContent = "View";
+                viewDateBtn.style.fontSize = "18px";
+                viewDateClearBtn.remove();
+              ;}
               let editObj = {
                 date: `${ed1.value}/${ed2.value}/${ed3.value}`,
                 startTime: `${est1.value}:${est2.value}`,
@@ -597,23 +671,11 @@ function findDate(mm, dd, yy) {
               fetch(`http://localhost:3000/hours/${e.id}`, editConfig)
                 .then((resp) => resp.json())
                 .then((data) => {
-                  document.getElementById(`view-date-time-info${e.id}`).innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
-                  ed1.placeholder = data.date[0] + data.date[1];
-                  ed1.value = "";
-                  ed2.placeholder = data.date[3] + data.date[4];
-                  ed2.value = "";
-                  ed3.placeholder = data.date[6] + data.date[7];
-                  ed3.value = "";
-                  est1.placeholder = data.startTime[0] + data.startTime[1];
-                  est1.value = "";
-                  est2.placeholder = data.startTime[3] + data.startTime[4];
-                  est2.value = "";
-                  eet1.placeholder = data.endTime[0] + data.endTime[1];
-                  eet1.value = "";
-                  eet2.placeholder = data.endTime[3] + data.endTime[4];
-                  eet2.value = "";
-                  eTotal.placeholder = data.total;
-                  eTotal.value = "";
+                    let currentDiv = document.getElementById(`time-info${e.id}`);
+                    currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
+                    vdMonth.value = data.date[0] + data.date[1];
+                    vdDay.value = data.date[3] + data.date[4];
+                    vdYear.value = data.date[6] + data.date[7];
                 })
                 .catch((error) => {
                   console.log(error.message);
@@ -637,6 +699,7 @@ function findDate(mm, dd, yy) {
           vdMonth.focus();
           viewDateBtn.textContent = "View";
           viewDateBtn.style.fontSize = "18px";
+          hiddenForm.style.display = "none";
           viewDateClearBtn.remove();
         })
         db2.appendChild(viewDateClearBtn);

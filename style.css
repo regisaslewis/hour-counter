@@ -305,10 +305,12 @@ td {
     grid-template-rows: repeat(auto-fill, 1fr);
     justify-content: center;
     align-items: center;
+    row-gap: 4px;
 }
 
 #db1 > h3 {
-    margin-bottom: 0;
+    margin: -5px auto 5px auto;
+    font-size: 0.95rem;
 }
 
 #view-date {
@@ -384,7 +386,7 @@ td {
 }
 
 #pop-up-all {
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 #pop-up-search {
@@ -409,7 +411,7 @@ td {
 
 #big-total-div {
     background-color: rgb(65, 90, 97);
-    width: 90%;
+    width: 80%;
     height: auto;
     transition: transform 02.s;
 }
@@ -436,7 +438,7 @@ td {
     position: fixed;
     border: solid 5px goldenrod;
     top: 20%;
-    right: 60%;
+    left: 60%;
     display: none;
     padding: 0 15px 10px 15px;
     z-index: 23;
