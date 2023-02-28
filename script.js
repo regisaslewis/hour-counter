@@ -700,10 +700,15 @@ function findDate(mm, dd, yy) {
                 }) 
             }
 
-            document.querySelector("#submit").addEventListener("click", submitEditNew)
+            document.querySelector("#submit").addEventListener("click", () => {
+              submitEditNew();
+              viewDateBtn.focus();
+            })
             document.querySelector("#eTotal").addEventListener("keyup", (event) => {
               if (event.key === "Enter") {
                 submitEditNew();
+                hiddenForm.style.display = "none";
+                viewDateBtn.focus();
               }
             }) 
                  
