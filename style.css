@@ -434,12 +434,13 @@ td {
 }
 
 #hidden-form {
-    background-color: rgb(21, 149, 130);
+    background-color: rgb(217, 186, 109);
     position: fixed;
-    border: solid 5px goldenrod;
-    top: 20%;
+    border: solid 5px rgb(17, 125, 108);
+    top: 35%;
     left: 60%;
     display: none;
+    outline: solid black 2px;
     padding: 0 15px 10px 15px;
     z-index: 23;
 }

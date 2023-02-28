@@ -295,7 +295,42 @@ function responseFail() {
   setTimeout(() => errorMessage.style.display = "none", "2000");
 }
 
-// View the Entire db.json contents
+// Conents of the hidden edit div for generation/appending
+
+const hiddenFormContents = `
+<h3 id="id-info">id##</h3>
+<label for="date">Date:</label>
+<div class="datebox">
+    <input name="date" id="ed1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="MM" onkeyup="autotab('ed1', 'ed2')" autocomplete="off">
+    /
+    <input name="date" id="ed2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="DD" onkeyup="autotab('ed2', 'ed3')" onkeydown="deleteBack('ed2', 'ed1')" autocomplete="off">
+    /
+    <input name="date" id="ed3" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="YY" onkeyup="autotab('ed3', 'est1')" onkeydown="deleteBack('ed3', 'ed2')" autocomplete="off">
+</div>
+<br>
+<label for="start-time">Start Time:</label>
+<div class="timebox">
+    <input name="start-time" id="est1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est1', 'est2')" onkeydown="deleteBack('est1', 'ed3')" autocomplete="off">
+    :
+    <input name="start-time" id="est2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est2', 'eet1')" onkeydown="deleteBack('est2', 'est1')" autocomplete="off">
+</div>
+<br>
+<label for="end-time">End Time:</label>
+<div class="timebox">
+    <input name="end-time" id="eet1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet1', 'eet2')" onkeydown="deleteBack('eet1', 'est2')" autocomplete="off">
+    :
+    <input name="end-time" id="eet2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet2', 'eTotal')" onkeydown="deleteBack('eet2', 'eet1')" autocomplete="off">
+</div>
+<br>
+<label for="edit-total">Total Hours:</label>
+<div class="totalbox">
+    <input name="edit-total" id="eTotal" type="text" inputmode="numeric" maxlength="5" placeholder="00.00" onkeydown="deleteBack('eTotal', 'eet2')" autocomplete="off">
+</div>
+<input id="submit" class="button" type="submit" value="Submit Edit" onclick ="closeHiddenForm()">
+<button id="close-form" onclick="closeHiddenForm()">Close</button>
+<p class="smalltext">Fill all fields, please.</p>`;
+
+// View the entire contents of db.json
 
 function viewDatabaseAll() {
   closeForm(hiddenForm, popUpTable, popUpSearch, popUpTotal);
@@ -320,39 +355,7 @@ function viewDatabaseAll() {
           dataDiv.addEventListener("click", allowEdit);
           function allowEdit() {
             hiddenForm.style.display = "inline-block";
-            hiddenForm.innerHTML = `
-            <h3 id="id-info">id##</h3>
-            <label for="date">Date:</label>
-            <div class="datebox">
-                <input name="date" id="ed1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="MM" onkeyup="autotab('ed1', 'ed2')" autocomplete="off">
-                /
-                <input name="date" id="ed2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="DD" onkeyup="autotab('ed2', 'ed3')" onkeydown="deleteBack('ed2', 'ed1')" autocomplete="off">
-                /
-                <input name="date" id="ed3" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="YY" onkeyup="autotab('ed3', 'est1')" onkeydown="deleteBack('ed3', 'ed2')" autocomplete="off">
-            </div>
-            <br>
-            <label for="start-time">Start Time:</label>
-            <div class="timebox">
-                <input name="start-time" id="est1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est1', 'est2')" onkeydown="deleteBack('est1', 'ed3')" autocomplete="off">
-                :
-                <input name="start-time" id="est2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est2', 'eet1')" onkeydown="deleteBack('est2', 'est1')" autocomplete="off">
-            </div>
-            <br>
-            <label for="end-time">End Time:</label>
-            <div class="timebox">
-                <input name="end-time" id="eet1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet1', 'eet2')" onkeydown="deleteBack('eet1', 'est2')" autocomplete="off">
-                :
-                <input name="end-time" id="eet2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet2', 'eTotal')" onkeydown="deleteBack('eet2', 'eet1')" autocomplete="off">
-            </div>
-            <br>
-            <label for="edit-total">Total Hours:</label>
-            <div class="totalbox">
-                <input name="edit-total" id="eTotal" type="text" inputmode="numeric" maxlength="5" placeholder="00.00" onkeydown="deleteBack('eTotal', 'eet2')" autocomplete="off">
-            </div>
-            <input id="submit" class="button" type="submit" value="Submit Edit" onclick ="closeHiddenForm()">
-            <button id="close-form" onclick="closeHiddenForm()">Close</button>
-            <p class="smalltext">Fill all fields, please.</p>
-            `
+            hiddenForm.innerHTML = hiddenFormContents;
             let idInfo = document.querySelector("#id-info");
             let ed1 = document.querySelector("#ed1");
             let ed2 = document.querySelector("#ed2");
@@ -380,7 +383,7 @@ function viewDatabaseAll() {
             eet2.value = "";
             eTotal.value = "";
 
-            document.querySelector("#submit").addEventListener("click", () => {
+            function submitEdit() {
               let editObj = {
                 date: `${ed1.value}/${ed2.value}/${ed3.value}`,
                 startTime: `${est1.value}:${est2.value}`,
@@ -406,7 +409,15 @@ function viewDatabaseAll() {
                 .catch((error) => {
                   console.log(error.message);
                 }) 
-            })             
+            }
+
+            document.querySelector("#submit").addEventListener("click", submitEdit)
+            document.querySelector("#eTotal").addEventListener("keyup", (event) => {
+              if (event.key === "Enter") {
+                submitEdit();
+                tableScroll(popUpAll);
+              }
+            })        
           }
 
         popUpAll.appendChild(dataDiv);
@@ -491,91 +502,101 @@ function postNew() {
   if (tableArr2.length === 0 || tdMonth.value === "" || tdDay.value === "" || tdYear.value === "") {
     colorSwap(serverPostBtn, "Post to Server");
   } else {
-  function startTimeGrab() {
-    for (let i = 0; i < tableArr2.length; i++) {
-      if (i % 2 === 0) {
-        let starter = document.createElement("div");
-        starter.style.display = "none";
-        starter.className = "starter";
-        starter.id = "starter" + i;
-        starter.textContent = tableArr2[i].textContent[0] + tableArr2[i].textContent[1] + ":" + tableArr2[i].textContent[3] + tableArr2[i].textContent[4];
-        document.body.appendChild(starter);
+    function startTimeGrab() {
+      for (let i = 0; i < tableArr2.length; i++) {
+        if (i % 2 === 0) {
+          let starter = document.createElement("div");
+          starter.style.display = "none";
+          starter.className = "starter";
+          starter.id = "starter" + i;
+          starter.textContent = tableArr2[i].textContent[0] + tableArr2[i].textContent[1] + ":" + tableArr2[i].textContent[3] + tableArr2[i].textContent[4];
+          document.body.appendChild(starter);
+        }
       }
     }
-  }
-
-  function endTimeGrab() {
-    for (let i = 0; i < tableArr2.length; i++) {
-      if (i % 2 === 0) {
-        let ender = document.createElement("div");
-        ender.style.display = "none";
-        ender.className = "ender";
-        ender.id = "ender" + i;
-        ender.textContent = tableArr2[i].textContent[8] + tableArr2[i].textContent[9] + ":" + tableArr2[i].textContent[11] + tableArr2[i].textContent[12];
-        document.body.appendChild(ender);
+  
+    function endTimeGrab() {
+      for (let i = 0; i < tableArr2.length; i++) {
+        if (i % 2 === 0) {
+          let ender = document.createElement("div");
+          ender.style.display = "none";
+          ender.className = "ender";
+          ender.id = "ender" + i;
+          ender.textContent = tableArr2[i].textContent[8] + tableArr2[i].textContent[9] + ":" + tableArr2[i].textContent[11] + tableArr2[i].textContent[12];
+          document.body.appendChild(ender);
+        }
       }
     }
-  }
- 
-  function totalTimeGrab() {
-    for (let i = 0; i < tableArr2.length; i++) {
-      if (i % 2 === 1) {
-        let totTimer = document.createElement("div");
-        totTimer.className = "totTimer";
-        totTimer.id = "totTimer" + i;
-        totTimer.style.display = "none";
-        totTimer.textContent = Number(tableArr2[i].textContent);
-        document.body.appendChild(totTimer);
+   
+    function totalTimeGrab() {
+      for (let i = 0; i < tableArr2.length; i++) {
+        if (i % 2 === 1) {
+          let totTimer = document.createElement("div");
+          totTimer.className = "totTimer";
+          totTimer.id = "totTimer" + i;
+          totTimer.style.display = "none";
+          totTimer.textContent = Number(tableArr2[i].textContent);
+          document.body.appendChild(totTimer);
+        }
       }
     }
-  }
-
-  startTimeGrab();
-  endTimeGrab();
-  totalTimeGrab();
-  let arr1 = Array.from(document.querySelectorAll(".starter"));
-  let arr2 = Array.from(document.querySelectorAll(".ender"));
-  let arr3 = Array.from(document.querySelectorAll(".totTimer"));
-
-  function postMultiple() {
-    for (let i = 0; i < arr1.length; i++) {
-      let postData = {
-      date: `${tdMonth.value}/${tdDay.value}/${tdYear.value}`,
-      startTime: arr1[i].textContent,
-      endTime: arr2[i].textContent,
-      total: Number(arr3[i].textContent),
-      };
-      const postObject = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(postData),
-      };
-      fetch(`http://localhost:3000/hours`, postObject)
-        .then((resp) => resp.json())
-        .then((data) => data)
-        .catch((error) => {
-          responseFail();
-          console.log(error.message);
-        })
+  
+    startTimeGrab();
+    endTimeGrab();
+    totalTimeGrab();
+    let arr1 = Array.from(document.querySelectorAll(".starter"));
+    let arr2 = Array.from(document.querySelectorAll(".ender"));
+    let arr3 = Array.from(document.querySelectorAll(".totTimer"));
+  
+    function postMultiple() {
+      for (let i = 0; i < arr1.length; i++) {
+        let postData = {
+        date: `${tdMonth.value}/${tdDay.value}/${tdYear.value}`,
+        startTime: arr1[i].textContent,
+        endTime: arr2[i].textContent,
+        total: Number(arr3[i].textContent),
+        };
+        const postObject = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(postData),
+        };
+        fetch(`http://localhost:3000/hours`, postObject)
+          .then((resp) => resp.json())
+          .then((data) => data)
+          .catch((error) => {
+            responseFail();
+            console.log(error.message);
+          })
+      }
     }
+    postMultiple();
+    serverPostBtn.textContent = "POSTED"
+    serverPostBtn.style.fontSize = "36px";
+    serverPostBtn.style.width = "auto";
+    serverPostBtn.style.height = "45px";
+    serverPostBtn.style.transform = "rotate(-45deg)";
+    serverPostBtn.style.fontWeight = "bold";
+    serverPostBtn.style.color = "black";
+    serverPostBtn.style.backgroundColor = "white";
+    serverPostBtn.style.boxShadow = "none";
+    serverPostBtn.style.zIndex = "10";
+    popUpTable.style.display = "none";
+    serverPostBtn.removeEventListener("click", postNew);
+
+    setTimeout(() => {
+      serverPostBtn.style.transform = "rotate(0deg)";
+      colorSwap(serverPostBtn, "Post to Server");
+      serverPostBtn.textContent = "Wait...";
+      serverPostBtn.style.height = "40px";
+      serverPostBtn.style.boxShadow = "3px 2px 2px black";
+      serverPostBtn.style.fontWeight = "100";
+      serverPostBtn.addEventListener("click", postNew);
+    }, "4000")
   }
-  postMultiple();
-  serverPostBtn.textContent = "POSTED"
-  serverPostBtn.style.fontSize = "36px";
-  serverPostBtn.style.width = "auto";
-  serverPostBtn.style.height = "45px";
-  serverPostBtn.style.transform = "rotate(-45deg)";
-  serverPostBtn.style.fontWeight = "bold";
-  serverPostBtn.style.color = "black";
-  serverPostBtn.style.backgroundColor = "white";
-  serverPostBtn.style.boxShadow = "none";
-  serverPostBtn.style.zIndex = "10";
-  popUpTable.style.display = "none";
-  serverPostBtn.removeEventListener("click", postNew);
-}
 }
 
 serverPostBtn.addEventListener("click", postNew);
@@ -610,39 +631,7 @@ function findDate(mm, dd, yy) {
           viewDateDiv.addEventListener("click", allowEdit);
           function allowEdit() {
             hiddenForm.style.display = "inline-block";
-            hiddenForm.innerHTML = `
-            <h3 id="id-info">id##</h3>
-            <label for="date">Date:</label>
-            <div class="datebox">
-                <input name="date" id="ed1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="MM" onkeyup="autotab('ed1', 'ed2')" autocomplete="off">
-                /
-                <input name="date" id="ed2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="DD" onkeyup="autotab('ed2', 'ed3')" onkeydown="deleteBack('ed2', 'ed1')" autocomplete="off">
-                /
-                <input name="date" id="ed3" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="YY" onkeyup="autotab('ed3', 'est1')" onkeydown="deleteBack('ed3', 'ed2')" autocomplete="off">
-            </div>
-            <br>
-            <label for="start-time">Start Time:</label>
-            <div class="timebox">
-                <input name="start-time" id="est1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est1', 'est2')" onkeydown="deleteBack('est1', 'ed3')" autocomplete="off">
-                :
-                <input name="start-time" id="est2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('est2', 'eet1')" onkeydown="deleteBack('est2', 'est1')" autocomplete="off">
-            </div>
-            <br>
-            <label for="end-time">End Time:</label>
-            <div class="timebox">
-                <input name="end-time" id="eet1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet1', 'eet2')" onkeydown="deleteBack('eet1', 'est2')" autocomplete="off">
-                :
-                <input name="end-time" id="eet2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="00" onkeyup="autotab('eet2', 'eTotal')" onkeydown="deleteBack('eet2', 'eet1')" autocomplete="off">
-            </div>
-            <br>
-            <label for="edit-total">Total Hours:</label>
-            <div class="totalbox">
-                <input name="edit-total" id="eTotal" type="text" inputmode="numeric" maxlength="5" placeholder="00.00" onkeydown="deleteBack('eTotal', 'eet2')" autocomplete="off">
-            </div>
-            <input id="submit" class="button" type="submit" value="Submit Edit" onclick ="closeHiddenForm()">
-            <button id="close-form" onclick="closeHiddenForm()">Close</button>
-            <p class="smalltext">Fill all fields, please.</p>
-            `
+            hiddenForm.innerHTML = hiddenFormContents
             let idInfo = document.querySelector("#id-info");
             let ed1 = document.querySelector("#ed1");
             let ed2 = document.querySelector("#ed2");
@@ -670,7 +659,9 @@ function findDate(mm, dd, yy) {
             eet2.value = "";
             eTotal.value = "";
 
-            document.querySelector("#submit").addEventListener("click", () => {
+            
+            
+            function submitEditNew() {
               if (document.getElementById("db2").lastChild.textContent === "Clear") {
                 popUpSearch.innerHTML = "";
                 vdMonth.value = "";
@@ -699,15 +690,23 @@ function findDate(mm, dd, yy) {
                 .then((resp) => resp.json())
                 .then((data) => {
                     let currentDiv = document.getElementById(`time-info${e.id}`);
-                    currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
                     vdMonth.value = data.date[0] + data.date[1];
                     vdDay.value = data.date[3] + data.date[4];
                     vdYear.value = data.date[6] + data.date[7];
+                    currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
                 })
                 .catch((error) => {
                   console.log(error.message);
                 }) 
-            })             
+            }
+
+            document.querySelector("#submit").addEventListener("click", submitEditNew)
+            document.querySelector("#eTotal").addEventListener("keyup", (event) => {
+              if (event.key === "Enter") {
+                submitEditNew();
+              }
+            }) 
+                 
           }
           if (viewDateDiv.innerText !== "") {
             viewDateBtn.textContent = "Add More";
@@ -747,28 +746,6 @@ viewDateBtn.addEventListener("click", () => {
   viewDateBtn.blur();
 })
 
-function deleteLastDB() {
-  const lastEntry = {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json/",
-      "Accept": "application/json"
-    }
-  }
-  fetch(`http://localhost:3000/hours/`)
-    .then((resp) => resp.json())
-    .then((data) => {
-      let lastID = data.length;
-      fetch(`http://localhost:3000/hours/${lastID}`, lastEntry)
-      .then((resp) => resp.json())
-      .then((dat) => dat)
-      .catch((error) => {
-        responseFail();
-        console.log(error.message);
-      })
-    })
-}
-
 function completeTotal() {
   closeForm(hiddenForm, popUpTable, popUpSearch, popUpAll);
   viewDBAllBtn.textContent = "View the whole database";
@@ -805,3 +782,26 @@ dbTotalBtn.addEventListener("click", () => {
   dbTotalBtn.blur();
 })
 
+// secret *Delete* function (for removing test entries)
+
+function deleteLastDB() {
+  const lastEntry = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json/",
+      "Accept": "application/json"
+    }
+  }
+  fetch(`http://localhost:3000/hours/`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      let lastID = data.length;
+      fetch(`http://localhost:3000/hours/${lastID}`, lastEntry)
+      .then((resp) => resp.json())
+      .then((dat) => dat)
+      .catch((error) => {
+        responseFail();
+        console.log(error.message);
+      })
+    })
+}
