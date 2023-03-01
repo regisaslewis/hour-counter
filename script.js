@@ -458,12 +458,18 @@ function dbit() {
 
 function inputTodayDate() {
   let today = new Date().toLocaleDateString();
-  if (today.length === 9) {
+  if (today.length === 8) {
+    today = "0" + today;
+    let split = today.split("");
+    split.splice(3, 0, "0");
+    today = split.join("");
+  } else if (today.length === 9) {
     today = "0" + today;
   }
   tdMonth.value = today[0] + today[1];
   tdDay.value = today[3] + today[4];
   tdYear.value = today[8] + today[9];
+  dateToday.blur();
 }
 
 dateToday.addEventListener("click", inputTodayDate);
