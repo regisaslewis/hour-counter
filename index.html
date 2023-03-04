@@ -69,11 +69,11 @@
                 <button id="date-today">Enter Today's Date</button>
                 <h3>or, Choose a Date to Post</h3>
                 <div class="datebox">
-                    <input id="td1" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="MM" onkeyup="autotab('td1', 'td2')" autocomplete="off">
+                    <input id="td1" class="date-input" type="text" inputmode="numeric" minlength="2" maxlength="2" placeholder="MM" onkeyup="autotab('td1', 'td2')" autocomplete="off">
                     /
-                    <input id="td2" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="DD" onkeyup="autotab('td2', 'td3')" onkeydown="deleteBack('td2', 'td1')" autocomplete="off">
+                    <input id="td2" class="date-input" type="text" inputmode="numeric" minlength="2" maxlength="2" placeholder="DD" onkeyup="autotab('td2', 'td3')" onkeydown="deleteBack('td2', 'td1')" autocomplete="off">
                     /
-                    <input id="td3" class="date-input" type="text" inputmode="numeric" maxlength="2" placeholder="YY" onkeyup="autotab('td3', 'to-server')" onkeydown="deleteBack('td3', 'td2')" autocomplete="off">              
+                    <input id="td3" class="date-input" type="text" inputmode="numeric" minlength="2" maxlength="2" placeholder="YY" onkeyup="autotab('td3', 'to-server')" onkeydown="deleteBack('td3', 'td2')" autocomplete="off">              
                 </div>
                 <button id="to-server" class="hover db-button" onkeydown="deleteBack('to-server', 'td3')">Post to Server</button>
             </div>

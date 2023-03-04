@@ -148,10 +148,10 @@ function moveToTable() {
        resetNoFocus();
       }
     } else {
-      colorSwap(addToday, "Place in Table", "16px");
+      colorSwap(addToday, "Place in Table", "Invalid Info", "16px");
     }
   } else {
-    colorSwap(addToday, "Place in Table", "16px");}
+    colorSwap(addToday, "Place in Table", "Invalid Info", "16px");}
 }
 
 let sum = -1;
@@ -325,10 +325,7 @@ const hiddenFormContents = `
 <label for="edit-total">Total Hours:</label>
 <div class="totalbox">
     <input name="edit-total" id="eTotal" type="text" inputmode="numeric" maxlength="5" placeholder="00.00" onkeydown="deleteBack('eTotal', 'eet2')" autocomplete="off">
-</div>
-<input id="submit" class="button" type="submit" value="Submit Edit" onclick ="closeHiddenForm()">
-<button id="close-form" onclick="closeHiddenForm()">Close</button>
-<p class="smalltext">Fill all fields, please.</p>`;
+</div>`;
 
 // View the entire contents of db.json
 
@@ -382,8 +379,71 @@ function viewDatabaseAll() {
             eet1.value = "";
             eet2.value = "";
             eTotal.value = "";
+            let submit = document.createElement("button");
+            submit.id = "submit";
+            submit.style.marginRight = "5px";
+            submit.textContent = "Submit Edit";
+            let closeForm = document.createElement("button");
+            closeForm.id = "close-form";
+            closeForm.textContent = "Close";
+            hiddenForm.appendChild(submit);
+            hiddenForm.appendChild(closeForm);
+
+            function emptyEdit() {
+              ed1.value = "";
+              ed2.value = "";
+              ed3.value = "";
+              est1.value = "";
+              est2.value = "";
+              eet1.value = "";
+              eet2.value = "";
+              eTotal.value = ""
+            }
+
+            function checkEdit() {
+              if (ed1.value === "") {
+                ed1.value = ed1.placeholder;
+              }
+              if (ed2.value === "") {
+                ed2.value = ed2.placeholder;
+              } 
+              if (ed3.value === "") {
+                ed3.value = ed3.placeholder;
+              }
+              if (est1.value === "") {
+                est1.value = est1.placeholder;
+              }
+              if (est2.value === "") {
+                est2.value = est2.placeholder;
+              }
+              if (eet1.value === "") {
+                eet1.value = eet1.placeholder;
+              }
+              if (eet2.value === "") {
+                eet2.value = eet2.placeholder;
+              }
+              if (eTotal.value === "") {
+                eTotal.value = eTotal.placeholder;
+              }
+            }
 
             function submitEdit() {
+              if (isNotAMonth(ed1)){
+               colorSwap(submit, "Submit Edit", "Invalid Month");
+               emptyEdit();
+             } else if (isNotAFebDay(ed1, ed2)) {
+               colorSwap(submit, "Submit Edit", "Invalid Day");
+               emptyEdit();    
+             } else if (isNotA30DayMonthDay(ed1, ed2)) {
+               colorSwap(submit, "Submit Edit", "Invalid Day");  
+               emptyEdit();  
+             } else if (isNotA31DayMonthDay(ed1, ed2)) {
+               colorSwap(submit, "Submit Edit", "Invalid Day");
+               emptyEdit();
+              } else if (isNotAYear(ed3)) {
+               colorSwap(submit, "Submit Edit", "Invalid Year");
+               emptyEdit();
+              } else {
               let editObj = {
                 date: `${ed1.value}/${ed2.value}/${ed3.value}`,
                 startTime: `${est1.value}:${est2.value}`,
@@ -410,10 +470,17 @@ function viewDatabaseAll() {
                   console.log(error.message);
                 }) 
             }
+          }
 
-            document.querySelector("#submit").addEventListener("click", submitEdit)
+            submit.addEventListener("click", () => {
+              checkEdit();
+              submitEdit();
+              tableScroll(popUpAll);
+            });
+            closeForm.addEventListener("click", closeHiddenForm);
             document.querySelector("#eTotal").addEventListener("keyup", (event) => {
               if (event.key === "Enter") {
+                checkEdit();
                 submitEdit();
                 tableScroll(popUpAll);
               }
@@ -474,11 +541,10 @@ function inputTodayDate() {
 
 dateToday.addEventListener("click", inputTodayDate);
 
-/* Post Today's Times
-this is far too complicated to be the best way, but it works for now */
+// Swap colors for invalid input fields
 
-function colorSwap(btn, oldText, fSize="14px") {
-  btn.textContent = "Invalid Info";
+function colorSwap(btn, oldText, info="Invalid Info", fSize="14px") {
+  btn.textContent = info;
   btn.style.backgroundColor = "red";
   btn.style.fontSize = "14px";
   btn.style.color = "yellow";
@@ -503,11 +569,46 @@ function colorSwap(btn, oldText, fSize="14px") {
   }, "1700");
 }
 
+// functions for proper calendar months
+
+function isNotAMonth(month) {
+  if (month.value < 0 || month.value >= 12) return true;
+}
+
+function isNotAFebDay(month, day) {
+  if (month.value == 02 && day.value > 29) return true;
+}
+
+function isNotA30DayMonthDay(month, day) {
+  if ((month.value == 04 || month.value == 06 || month.value == 09 || month.value == 11) && day.value > 30) return true;
+}
+
+function isNotA31DayMonthDay(month, day) {
+  if ((month.value == 01 || month.value == 03 || month.value == 05 || month.value == 07 || month.value == 08 || month.value == 10 || month.value == 12) && day.value > 31) return true;
+}
+
+function isNotAYear(year) {
+  if (year.value < 0 || year.value > 99) return true;
+}
+
+/* Post Today's Times
+this is far too complicated to be the best way, but it works for now */
+
 function postNew() {
   let tableArr2 = Array.from(document.querySelectorAll(".taDiv"));
   if (tableArr2.length === 0 || tdMonth.value === "" || tdDay.value === "" || tdYear.value === "") {
     colorSwap(serverPostBtn, "Post to Server");
-  } else {
+  } else if (isNotAMonth(tdMonth)){
+    colorSwap(serverPostBtn, "Post to Server", "Invalid Month");
+  } else if (isNotAFebDay(tdMonth, tdDay)) {
+    colorSwap(serverPostBtn, "Post to Server", "Invalid Day");    
+  } else if (isNotA30DayMonthDay(tdMonth, tdDay)) {
+    colorSwap(serverPostBtn, "Post to Server", "Invalid Day");    
+  } else if (isNotA31DayMonthDay(tdMonth, tdDay)) {
+    colorSwap(serverPostBtn, "Post to Server", "Invalid Day");
+   } else if (isNotAYear(tdYear)) {
+    colorSwap(serverPostBtn, "Post to Server", "Invalid Year");
+   } else {
     function startTimeGrab() {
       for (let i = 0; i < tableArr2.length; i++) {
         if (i % 2 === 0) {
@@ -591,6 +692,7 @@ function postNew() {
     serverPostBtn.style.boxShadow = "none";
     serverPostBtn.style.zIndex = "10";
     popUpTable.style.display = "none";
+    tableArr2 = [];
     serverPostBtn.removeEventListener("click", postNew);
 
     setTimeout(() => {
@@ -600,6 +702,9 @@ function postNew() {
       serverPostBtn.style.height = "40px";
       serverPostBtn.style.boxShadow = "3px 2px 2px black";
       serverPostBtn.style.fontWeight = "100";
+      tdMonth.value = "";
+      tdDay.value = "";
+      tdYear.value = "";
       serverPostBtn.addEventListener("click", postNew);
     }, "4000")
   }
@@ -620,7 +725,7 @@ function findDate(mm, dd, yy) {
     .then((resp) => resp.json())
     .then((data) => {
       if (data.length === 0) {
-        colorSwap(viewDateBtn, "View", "18px");
+        colorSwap(viewDateBtn, "View", "Date Not Found", "18px");
         vdMonth.value = "";
         vdDay.value = "";
         vdYear.value = "";
@@ -664,20 +769,71 @@ function findDate(mm, dd, yy) {
             eet1.value = "";
             eet2.value = "";
             eTotal.value = "";
+            let submit = document.createElement("button");
+            submit.id = "submit";
+            submit.style.marginRight = "5px";
+            submit.textContent = "Submit Edit";
+            let closeForm = document.createElement("button");
+            closeForm.id = "close-form";
+            closeForm.textContent = "Close";
+            hiddenForm.appendChild(submit);
+            hiddenForm.appendChild(closeForm);
 
+            function emptyEdit() {
+              ed1.value = "";
+              ed2.value = "";
+              ed3.value = "";
+              est1.value = "";
+              est2.value = "";
+              eet1.value = "";
+              eet2.value = "";
+              eTotal.value = ""
+            }
             
+            function checkEdit() {
+              if (ed1.value === "") {
+                ed1.value = ed1.placeholder;
+              }
+              if (ed2.value === "") {
+                ed2.value = ed2.placeholder;
+              } 
+              if (ed3.value === "") {
+                ed3.value = ed3.placeholder;
+              }
+              if (est1.value === "") {
+                est1.value = est1.placeholder;
+              }
+              if (est2.value === "") {
+                est2.value = est2.placeholder;
+              }
+              if (eet1.value === "") {
+                eet1.value = eet1.placeholder;
+              }
+              if (eet2.value === "") {
+                eet2.value = eet2.placeholder;
+              }
+              if (eTotal.value === "") {
+                eTotal.value = eTotal.placeholder;
+              }
+            }
             
             function submitEditNew() {
-              if (document.getElementById("db2").lastChild.textContent === "Clear") {
-                popUpSearch.innerHTML = "";
-                vdMonth.value = "";
-                vdDay.value = "";
-                vdYear.value = "";
-                vdMonth.focus();
-                viewDateBtn.textContent = "View";
-                viewDateBtn.style.fontSize = "18px";
-                viewDateClearBtn.remove();
-              ;}
+              if (isNotAMonth(ed1)){
+                colorSwap(submit, "Submit Edit", "Invalid Month");
+                emptyEdit();
+              } else if (isNotAFebDay(ed1, ed2)) {
+                colorSwap(submit, "Submit Edit", "Invalid Day"); 
+                emptyEdit();   
+              } else if (isNotA30DayMonthDay(ed1, ed2)) {
+                colorSwap(submit, "Submit Edit", "Invalid Day"); 
+                emptyEdit();   
+              } else if (isNotA31DayMonthDay(ed1, ed2)) {
+                colorSwap(submit, "Submit Edit", "Invalid Day");
+                emptyEdit();
+               } else if (isNotAYear(ed3)) {
+                colorSwap(submit, "Submit Edit", "Invalid Year");
+                emptyEdit();
+               } else {
               let editObj = {
                 date: `${ed1.value}/${ed2.value}/${ed3.value}`,
                 startTime: `${est1.value}:${est2.value}`,
@@ -703,20 +859,26 @@ function findDate(mm, dd, yy) {
                 })
                 .catch((error) => {
                   console.log(error.message);
-                }) 
+                })
+              }
             }
 
-            document.querySelector("#submit").addEventListener("click", () => {
+            submit.addEventListener("click", () => {
+              checkEdit();
               submitEditNew();
-              viewDateBtn.focus();
-            })
+              closeHiddenForm();
+              clearByDate()
+            });
+            closeForm.addEventListener("click", closeHiddenForm);
             document.querySelector("#eTotal").addEventListener("keyup", (event) => {
               if (event.key === "Enter") {
+                checkEdit();
                 submitEditNew();
-                hiddenForm.style.display = "none";
-                viewDateBtn.focus();
+                closeHiddenForm();
+                clearByDate();
+                tableScroll(popUpSearch);
               }
-            }) 
+            })
                  
           }
           if (viewDateDiv.innerText !== "") {
@@ -728,7 +890,8 @@ function findDate(mm, dd, yy) {
         let viewDateClearBtn = document.createElement("button");
         viewDateClearBtn.id = "vdcb";
         viewDateClearBtn.textContent = "Clear";
-        viewDateClearBtn.addEventListener("click", () => {
+
+        function clearByDate() {
           popUpSearch.innerHTML = "";
           vdMonth.value = "";
           vdDay.value = "";
@@ -737,8 +900,10 @@ function findDate(mm, dd, yy) {
           viewDateBtn.textContent = "View";
           viewDateBtn.style.fontSize = "18px";
           hiddenForm.style.display = "none";
-          viewDateClearBtn.remove();
-        })
+          viewDateClearBtn.remove();          
+        }
+
+        viewDateClearBtn.addEventListener("click", clearByDate)
         db2.appendChild(viewDateClearBtn);
       }
     })
@@ -757,10 +922,11 @@ viewDateBtn.addEventListener("click", () => {
   viewDateBtn.blur();
 })
 
+// See the total hours added up, plus an average
+
 function completeTotal() {
   closeForm(hiddenForm, popUpTable, popUpSearch, popUpAll);
   viewDBAllBtn.textContent = "View the whole database";
-
 
   if (popUpTotal.textContent === "") {
     fetch(`http://localhost:3000/hours`)
