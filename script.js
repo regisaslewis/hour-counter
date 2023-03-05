@@ -274,6 +274,54 @@ const tdDay = document.getElementById("td2");
 const tdYear = document.getElementById("td3");
 const hiddenForm = document.getElementById("hidden-form");
 
+// functions for proper calendar and times
+
+function isNotAMonth(month) {
+  if (month.value > 0 && month.value <= 12) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function isNotADay(month, day) {
+  if (month.value == 02 && day.value >= 1 && day.value <= 29) {
+    return false;
+  } else if ((month.value == 04 || month.value == 06 || month.value == 09 || month.value == 11) && day.value >= 1 && day.value <= 30) {
+    return false;
+  } else if ((month.value == 01 || month.value == 03 || month.value == 05 || month.value == 07 || month.value == 08 || month.value == 10 || month.value == 12) && day.value >= 1 && day.value <= 31) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function isNotAYear(year) {
+  if (year.value >= 1 && year.value <= 99) {
+    return false;
+  } else {
+    return true;
+  };
+}
+
+function isNotAnHour(hour) {
+  if (hour.value >= 0 && hour.value <= 23) {
+    return false;
+  } else {
+    return true;
+  };
+}
+
+function isNotAMinute(minute) {
+  if (minute.value >= 0 && minute.value <= 59) {
+    return false;
+  } else {
+    return true;
+  };
+}
+
+// hiding elements
+
 function closeHiddenForm() {
   hiddenForm.style.display = "none";
 }
@@ -286,16 +334,20 @@ function closeForm(a=popUpTotal, b=popUpAll, c=popUpTable, d=popUpSearch) {
   viewDBAllBtn.textContent = "View the whole database";
 }
 
+// smooth scroll to database fields
+
 function tableScroll(div) {
   setTimeout(() => div.scrollIntoView({behavior: "smooth"}), 500);
 }
+
+// error pop-up (have not been able to test yet).
 
 function responseFail() {
   errorMessage.style.diplay = "block";
   setTimeout(() => errorMessage.style.display = "none", "2000");
 }
 
-// Conents of the hidden edit div for generation/appending
+// Conents of the hidden Edit Div for generation/appending
 
 const hiddenFormContents = `
 <h3 id="id-info">id##</h3>
@@ -326,6 +378,10 @@ const hiddenFormContents = `
 <div class="totalbox">
     <input name="edit-total" id="eTotal" type="text" inputmode="numeric" maxlength="5" placeholder="00.00" onkeydown="deleteBack('eTotal', 'eet2')" autocomplete="off">
 </div>`;
+
+function hiddenFormAction() {
+  
+}
 
 // View the entire contents of db.json
 
@@ -393,14 +449,18 @@ function viewDatabaseAll() {
             buttonContainer.appendChild(closeForm);
 
             function emptyEdit() {
-              ed1.value = "";
-              ed2.value = "";
-              ed3.value = "";
-              est1.value = "";
-              est2.value = "";
-              eet1.value = "";
-              eet2.value = "";
-              eTotal.value = ""
+              submit.style.transform = "scale(1.05)"
+              setTimeout(() => {
+                ed1.value = "";
+                ed2.value = "";
+                ed3.value = "";
+                est1.value = "";
+                est2.value = "";
+                eet1.value = "";
+                eet2.value = "";
+                eTotal.value = "";
+                submit.style.transform = "scale(1)";
+              }, "1700");
             }
 
             function checkEdit() {
@@ -434,22 +494,18 @@ function viewDatabaseAll() {
               if (isNotAMonth(ed1)){
                colorSwap(submit, "Submit Edit", "Invalid Month");
                emptyEdit();
-             } else if (isNotAFebDay(ed1, ed2)) {
-               colorSwap(submit, "Submit Edit", "Invalid Day");
-               emptyEdit();    
-             } else if (isNotA30DayMonthDay(ed1, ed2)) {
-               colorSwap(submit, "Submit Edit", "Invalid Day");  
-               emptyEdit();  
-             } else if (isNotA31DayMonthDay(ed1, ed2)) {
+             } else if (isNotADay(ed1, ed2)) {
                colorSwap(submit, "Submit Edit", "Invalid Day");
                emptyEdit();
               } else if (isNotAYear(ed3)) {
                colorSwap(submit, "Submit Edit", "Invalid Year");
-               emptyEdit();
+               emptyEdit(submit);
               } else if (isNotAnHour(est1) || isNotAnHour(eet1)) {
-                colorSwap(submit, "Submit Edit", "Invalid Hour")
+                colorSwap(submit, "Submit Edit", "Invalid Hour");
+                emptyEdit()
               } else if (isNotAMinute(est2) || isNotAMinute(eet2)) {
-                colorSwap(submit, "Submit Edit", "Invalid Minutes")
+                colorSwap(submit, "Submit Edit", "Invalid Minutes");
+                emptyEdit();
               } else {
               let editObj = {
                 date: `${ed1.value}/${ed2.value}/${ed3.value}`,
@@ -576,36 +632,6 @@ function colorSwap(btn, oldText, info="Invalid Info", fSize="14px") {
   }, "1700");
 }
 
-// functions for proper calendar months
-
-function isNotAMonth(month) {
-  if (month.value < 0 || month.value >= 12) return true;
-}
-
-function isNotAFebDay(month, day) {
-  if (month.value == 02 && day.value > 29) return true;
-}
-
-function isNotA30DayMonthDay(month, day) {
-  if ((month.value == 04 || month.value == 06 || month.value == 09 || month.value == 11) && day.value > 30) return true;
-}
-
-function isNotA31DayMonthDay(month, day) {
-  if ((month.value == 01 || month.value == 03 || month.value == 05 || month.value == 07 || month.value == 08 || month.value == 10 || month.value == 12) && day.value > 31) return true;
-}
-
-function isNotAYear(year) {
-  if (year.value < 0 || year.value > 99) return true;
-}
-
-function isNotAnHour(hour) {
-  if (hour.value < 00 || hour.value > 23) return true;
-}
-
-function isNotAMinute(minute) {
-  if (minute.value < 00 || minute.value > 59) return true;
-}
-
 /* Post Today's Times
 this is far too complicated to be the best way, but it works for now */
 
@@ -615,13 +641,9 @@ function postNew() {
     colorSwap(serverPostBtn, "Post to Server");
   } else if (isNotAMonth(tdMonth)){
     colorSwap(serverPostBtn, "Post to Server", "Invalid Month");
-  } else if (isNotAFebDay(tdMonth, tdDay)) {
-    colorSwap(serverPostBtn, "Post to Server", "Invalid Day");    
-  } else if (isNotA30DayMonthDay(tdMonth, tdDay)) {
-    colorSwap(serverPostBtn, "Post to Server", "Invalid Day");    
-  } else if (isNotA31DayMonthDay(tdMonth, tdDay)) {
+  } else if (isNotADay(tdMonth, tdDay)) {
     colorSwap(serverPostBtn, "Post to Server", "Invalid Day");
-   } else if (isNotAYear(tdYear)) {
+  } else if (isNotAYear(tdYear)) {
     colorSwap(serverPostBtn, "Post to Server", "Invalid Year");
    } else {
     function startTimeGrab() {
@@ -798,14 +820,20 @@ function findDate(mm, dd, yy) {
             buttonContainer.appendChild(closeForm);
 
             function emptyEdit() {
-              ed1.value = "";
-              ed2.value = "";
-              ed3.value = "";
-              est1.value = "";
-              est2.value = "";
-              eet1.value = "";
-              eet2.value = "";
-              eTotal.value = ""
+              submit.style.transform = "scale(1.05)"
+              submit.style.transform = "rotation(-1deg)"
+              setTimeout(() => {
+                ed1.value = "";
+                ed2.value = "";
+                ed3.value = "";
+                est1.value = "";
+                est2.value = "";
+                eet1.value = "";
+                eet2.value = "";
+                eTotal.value = "";
+                submit.style.transform = "scale(1)";
+                submit.style.transform = "rotation(1deg)"
+              }, "1700");
             }
             
             function checkEdit() {
@@ -839,22 +867,18 @@ function findDate(mm, dd, yy) {
               if (isNotAMonth(ed1)){
                 colorSwap(submit, "Submit Edit", "Invalid Month");
                 emptyEdit();
-              } else if (isNotAFebDay(ed1, ed2)) {
+              } else if (isNotADay(ed1, ed2)) {
                 colorSwap(submit, "Submit Edit", "Invalid Day"); 
-                emptyEdit();   
-              } else if (isNotA30DayMonthDay(ed1, ed2)) {
-                colorSwap(submit, "Submit Edit", "Invalid Day"); 
-                emptyEdit();   
-              } else if (isNotA31DayMonthDay(ed1, ed2)) {
-                colorSwap(submit, "Submit Edit", "Invalid Day");
                 emptyEdit();
                } else if (isNotAYear(ed3)) {
                 colorSwap(submit, "Submit Edit", "Invalid Year");
                 emptyEdit();
                } else if (isNotAnHour(est1) || isNotAnHour(eet1)) {
-                colorSwap(submit, "Submit Edit", "Invalid Hour")
+                colorSwap(submit, "Submit Edit", "Invalid Hour");
+                emptyEdit()
               } else if (isNotAMinute(est2) || isNotAMinute(eet2)) {
-                colorSwap(submit, "Submit Edit", "Invalid Minutes")
+                colorSwap(submit, "Submit Edit", "Invalid Minutes");
+                emptyEdit();
               } else {
               let editObj = {
                 date: `${ed1.value}/${ed2.value}/${ed3.value}`,
