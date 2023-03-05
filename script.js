@@ -632,8 +632,7 @@ function colorSwap(btn, oldText, info="Invalid Info", fSize="14px") {
   }, "1700");
 }
 
-/* Post Today's Times
-this is far too complicated to be the best way, but it works for now */
+// Post Today's Times
 
 function postNew() {
   let tableArr2 = Array.from(document.querySelectorAll(".taDiv"));
