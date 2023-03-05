@@ -379,6 +379,9 @@ function viewDatabaseAll() {
             eet1.value = "";
             eet2.value = "";
             eTotal.value = "";
+            let buttonContainer = document.createElement("div");
+            buttonContainer.id = "buttCon";
+            hiddenForm.appendChild(buttonContainer);
             let submit = document.createElement("button");
             submit.id = "submit";
             submit.style.marginRight = "5px";
@@ -386,8 +389,8 @@ function viewDatabaseAll() {
             let closeForm = document.createElement("button");
             closeForm.id = "close-form";
             closeForm.textContent = "Close";
-            hiddenForm.appendChild(submit);
-            hiddenForm.appendChild(closeForm);
+            buttonContainer.appendChild(submit);
+            buttonContainer.appendChild(closeForm);
 
             function emptyEdit() {
               ed1.value = "";
@@ -443,6 +446,10 @@ function viewDatabaseAll() {
               } else if (isNotAYear(ed3)) {
                colorSwap(submit, "Submit Edit", "Invalid Year");
                emptyEdit();
+              } else if (isNotAnHour(est1) || isNotAnHour(eet1)) {
+                colorSwap(submit, "Submit Edit", "Invalid Hour")
+              } else if (isNotAMinute(est2) || isNotAMinute(eet2)) {
+                colorSwap(submit, "Submit Edit", "Invalid Minutes")
               } else {
               let editObj = {
                 date: `${ed1.value}/${ed2.value}/${ed3.value}`,
@@ -463,19 +470,19 @@ function viewDatabaseAll() {
                 .then((data) => {
                     let currentDiv = document.getElementById(`time-info${e.id}`);
                     currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
-                    viewDatabaseAll();
-                    viewDatabaseAll();
                 })
                 .catch((error) => {
                   console.log(error.message);
-                }) 
+                })
+                viewDatabaseAll();
+                viewDatabaseAll();
+                tableScroll(popUpAll);
             }
           }
 
             submit.addEventListener("click", () => {
               checkEdit();
               submitEdit();
-              tableScroll(popUpAll);
             });
             closeForm.addEventListener("click", closeHiddenForm);
             document.querySelector("#eTotal").addEventListener("keyup", (event) => {
@@ -589,6 +596,14 @@ function isNotA31DayMonthDay(month, day) {
 
 function isNotAYear(year) {
   if (year.value < 0 || year.value > 99) return true;
+}
+
+function isNotAnHour(hour) {
+  if (hour.value < 00 || hour.value > 23) return true;
+}
+
+function isNotAMinute(minute) {
+  if (minute.value < 00 || minute.value > 59) return true;
 }
 
 /* Post Today's Times
@@ -769,6 +784,9 @@ function findDate(mm, dd, yy) {
             eet1.value = "";
             eet2.value = "";
             eTotal.value = "";
+            let buttonContainer = document.createElement("div");
+            buttonContainer.id = "buttCon";
+            hiddenForm.appendChild(buttonContainer);
             let submit = document.createElement("button");
             submit.id = "submit";
             submit.style.marginRight = "5px";
@@ -776,8 +794,8 @@ function findDate(mm, dd, yy) {
             let closeForm = document.createElement("button");
             closeForm.id = "close-form";
             closeForm.textContent = "Close";
-            hiddenForm.appendChild(submit);
-            hiddenForm.appendChild(closeForm);
+            buttonContainer.appendChild(submit);
+            buttonContainer.appendChild(closeForm);
 
             function emptyEdit() {
               ed1.value = "";
@@ -833,7 +851,11 @@ function findDate(mm, dd, yy) {
                } else if (isNotAYear(ed3)) {
                 colorSwap(submit, "Submit Edit", "Invalid Year");
                 emptyEdit();
-               } else {
+               } else if (isNotAnHour(est1) || isNotAnHour(eet1)) {
+                colorSwap(submit, "Submit Edit", "Invalid Hour")
+              } else if (isNotAMinute(est2) || isNotAMinute(eet2)) {
+                colorSwap(submit, "Submit Edit", "Invalid Minutes")
+              } else {
               let editObj = {
                 date: `${ed1.value}/${ed2.value}/${ed3.value}`,
                 startTime: `${est1.value}:${est2.value}`,
@@ -856,27 +878,25 @@ function findDate(mm, dd, yy) {
                     vdDay.value = data.date[3] + data.date[4];
                     vdYear.value = data.date[6] + data.date[7];
                     currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
+                    tableScroll(popUpSearch);
                 })
                 .catch((error) => {
                   console.log(error.message);
                 })
+                closeHiddenForm();
+                clearByDate();
               }
             }
 
             submit.addEventListener("click", () => {
               checkEdit();
               submitEditNew();
-              closeHiddenForm();
-              clearByDate()
             });
             closeForm.addEventListener("click", closeHiddenForm);
             document.querySelector("#eTotal").addEventListener("keyup", (event) => {
               if (event.key === "Enter") {
                 checkEdit();
                 submitEditNew();
-                closeHiddenForm();
-                clearByDate();
-                tableScroll(popUpSearch);
               }
             })
                  

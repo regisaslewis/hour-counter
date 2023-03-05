@@ -440,7 +440,7 @@ td {
     top: 35%;
     left: 60%;
     display: none;
-    outline: solid black 2px;
+    outline: solid rgb(36, 35, 35) 2px;
     padding: 0 15px 10px 15px;
     z-index: 23;
 }
@@ -485,8 +485,11 @@ form > .datebox > input {
     font-size: 14px;
 }
 
-.smalltext {
-    font-weight: lighter;
-    font-size: 12px;
-    opacity: 75%; 
+#buttCon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none;
+    border: none;
 }
