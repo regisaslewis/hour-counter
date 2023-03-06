@@ -71,6 +71,7 @@ function minutesToDecimals(hour, minutes) {
   }
   return `${hour}.${minutes.toFixed(0)}`;
 }
+
 function totalTime(hr1, mn1, hr2, mn2) {
     hr1 = Number(h1.value);
     hr2 = Number(h2.value);
