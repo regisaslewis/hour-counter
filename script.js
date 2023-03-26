@@ -966,7 +966,7 @@ viewDateBtn.addEventListener("click", () => {
   viewDateBtn.blur();
 })
 
-// See the total hours added up, plus an average
+// See the total hours added up, number of days, and a session average
 
 function completeTotal() {
   closeForm(hiddenForm, popUpTable, popUpSearch, popUpAll);
@@ -986,7 +986,7 @@ function completeTotal() {
         let allHours = sum.reduce(addSum);
         let bigTotalDiv = document.createElement("div")
         bigTotalDiv.id = "big-total-div";
-        bigTotalDiv.innerHTML = `Total Recorded Hours: <strong>${allHours.toFixed(2)}</strong> <br> Average Hours per Session: <strong>${(allHours / sum.length).toFixed(2)}</strong>`
+        bigTotalDiv.innerHTML = `Total Recorded Hours: <strong>${allHours.toFixed(2)}</strong> <br> Number of Days: <strong>${(allHours / 24).toFixed(2)}</strong> <br> Average Hours per Session: <strong>${(allHours / sum.length).toFixed(2)}</strong>`
         popUpTotal.appendChild(bigTotalDiv);
       })
       .catch((error) => {
