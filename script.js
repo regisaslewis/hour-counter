@@ -1,17 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   fetch(`https://hour-counter-server.onrender.com/hours`)
-    .then((resp) => {
-      if (!resp.ok) {
-        document.getElementById("database-container").style.display = "none";
-        let offlineMessage = document.createElement("h5");
-        offlineMessage.textContent = "(offline)";
-        offlineMessage.style.marginTop = "-8px"
-        offlineMessage.style.marginBottom = 0;
-        offlineMessage.style.opacity = "70%"
-        document.getElementById("database").appendChild;
-        (offlineMessage);
-      }
-    })
+    .then((resp) => resp.json())
     .then((data) => data)
     .catch((error) => {
       document.getElementById("database-container").style.display = "none";
