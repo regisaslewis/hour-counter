@@ -966,7 +966,7 @@ viewDateBtn.addEventListener("click", () => {
   viewDateBtn.blur();
 })
 
-// See the total hours added up, number of days, and a session average
+// See the total hours added up, number of days, and a session average.
 
 function completeTotal() {
   closeForm(hiddenForm, popUpTable, popUpSearch, popUpAll);
