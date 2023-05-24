@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch(`http://localhost:3000/hours`)
+  fetch(`https://hour-counter-server.onrender.com/hours`)
     .then((resp) => {
       if (!resp.ok) {
         document.getElementById("database-container").style.display = "none";
@@ -396,7 +396,7 @@ function viewDatabaseAll() {
     popUpAll.innerHTML = " ";
   } else {
     viewDBAllBtn.textContent = "Close the database";
-    fetch(`http://localhost:3000/hours`)
+    fetch(`https://hour-counter-server.onrender.com/hours`)
       .then((resp) => resp.json())
       .then((data) => {
         data.forEach((e) => {
@@ -522,7 +522,7 @@ function viewDatabaseAll() {
                 },
                 body: JSON.stringify(editObj)
               };
-              fetch(`http://localhost:3000/hours/${e.id}`, editConfig)
+              fetch(`https://hour-counter-server.onrender.com/hours/${e.id}`, editConfig)
                 .then((resp) => resp.json())
                 .then((data) => {
                     let currentDiv = document.getElementById(`time-info${e.id}`);
@@ -708,7 +708,7 @@ function postNew() {
           },
           body: JSON.stringify(postData),
         };
-        fetch(`http://localhost:3000/hours`, postObject)
+        fetch(`https://hour-counter-server.onrender.com/hours`, postObject)
           .then((resp) => resp.json())
           .then((data) => data)
           .catch((error) => {
@@ -758,7 +758,7 @@ function findDate(mm, dd, yy) {
   mm = vdMonth.value;
   dd = vdDay.value;
   yy = vdYear.value;
-  fetch(`http://localhost:3000/hours?date_like=${mm}/${dd}/${yy}`)
+  fetch(`https://hour-counter-server.onrender.com/hours?date_like=${mm}/${dd}/${yy}`)
     .then((resp) => resp.json())
     .then((data) => {
       if (data.length === 0) {
@@ -894,7 +894,7 @@ function findDate(mm, dd, yy) {
                 },
                 body: JSON.stringify(editObj)
               };
-              fetch(`http://localhost:3000/hours/${e.id}`, editConfig)
+              fetch(`https://hour-counter-server.onrender.com/hours/${e.id}`, editConfig)
                 .then((resp) => resp.json())
                 .then((data) => {
                     let currentDiv = document.getElementById(`time-info${e.id}`);
@@ -973,7 +973,7 @@ function completeTotal() {
   viewDBAllBtn.textContent = "View the whole database";
 
   if (popUpTotal.textContent === "") {
-    fetch(`http://localhost:3000/hours`)
+    fetch(`https://hour-counter-server.onrender.com/hours`)
       .then((resp) => resp.json())
       .then((data) => {
         let sum = [];
@@ -1013,11 +1013,11 @@ function deleteLastDB() {
       "Accept": "application/json"
     }
   }
-  fetch(`http://localhost:3000/hours/`)
+  fetch(`https://hour-counter-server.onrender.com/hours/`)
     .then((resp) => resp.json())
     .then((data) => {
       let lastID = data.length;
-      fetch(`http://localhost:3000/hours/${lastID}`, lastEntry)
+      fetch(`https://hour-counter-server.onrender.com/hours/${lastID}`, lastEntry)
       .then((resp) => resp.json())
       .then((dat) => dat)
       .catch((error) => {
