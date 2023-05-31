@@ -384,7 +384,7 @@ function viewDatabaseAll() {
           dataDiv.id = `time-info${e.id}`;
           dataDiv.title = "Click to Edit";
           dataDiv.style.cursor = "default";
-          dataDiv.innerText = `Date: ${e.date}  \n Start Time: ${e.startTime} \n End Time: ${e.endTime} \n Total Hours: ${e.total}`;
+          dataDiv.innerText = `Date: ${e.date}  \n Start Time: ${e.startTime} \n End Time: ${e.endTime} \n Total Hours: ${e.total.toFixed(2)}`;
           dataDiv.addEventListener("click", allowEdit);
           function allowEdit() {
             hiddenForm.style.display = "inline-block";
@@ -406,7 +406,7 @@ function viewDatabaseAll() {
             est2.placeholder = e.startTime[3] + e.startTime[4];
             eet1.placeholder = e.endTime[0] + e.endTime[1];
             eet2.placeholder = e.endTime[3] + e.endTime[4];
-            eTotal.placeholder = e.total;
+            eTotal.placeholder = e.total.toFixed(2);
             ed1.value = "";
             ed2.value = "";
             ed3.value = "";
@@ -753,7 +753,7 @@ function findDate(mm, dd, yy) {
           viewDateDiv.title = "Click to Edit";
           viewDateDiv.style.cursor = "default";
           viewDateDiv.id = `view-date-time-info${e.id}`;
-          viewDateDiv.innerText = `Date: ${e.date}  \n Start Time: ${e.startTime} \n End Time: ${e.endTime} \n Total Hours: ${e.total}`;
+          viewDateDiv.innerText = `Date: ${e.date}  \n Start Time: ${e.startTime} \n End Time: ${e.endTime} \n Total Hours: ${e.total.toFixed(2)}`;
           popUpSearch.appendChild(viewDateDiv);
           viewDateDiv.addEventListener("click", allowEdit);
           function allowEdit() {
@@ -776,7 +776,7 @@ function findDate(mm, dd, yy) {
             est2.placeholder = e.startTime[3] + e.startTime[4];
             eet1.placeholder = e.endTime[0] + e.endTime[1];
             eet2.placeholder = e.endTime[3] + e.endTime[4];
-            eTotal.placeholder = e.total;
+            eTotal.placeholder = e.total.toFixed(2);
             ed1.value = "";
             ed2.value = "";
             ed3.value = "";
