@@ -23,6 +23,8 @@ const m2 = document.getElementById("mn2");
 const startBtn = document.getElementById("currentStart");
 const endBtn = document.getElementById("currentEnd");
 const resetBtn = document.getElementById("reset");
+const mainHeader = document.getElementById("header");
+const topButton = document.getElementById("top-button");
 
 resetBtn.addEventListener("click", () => location.reload());
 
@@ -233,6 +235,16 @@ function showSeconds() {
 
 setInterval(showTime, 1000);
 setInterval(showSeconds, 1000);
+
+topButton.addEventListener("click", function () {
+  topButton.blur();
+  if (viewDBAllBtn.textContent === "Close the database") {
+    setTimeout(viewDatabaseAll, 550);
+    tableScroll(mainHeader);
+  } else {
+    tableScroll(mainHeader);
+  }
+});
 
 // Database Stuff
 
@@ -505,13 +517,13 @@ function viewDatabaseAll() {
                 .then((resp) => resp.json())
                 .then((data) => {
                     let currentDiv = document.getElementById(`time-info${e.id}`);
-                    currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
+                    currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total.toFixed(2)}`;
+                    viewDatabaseAll();
+                    viewDatabaseAll();
                 })
                 .catch((error) => {
                   console.log(error.message);
                 })
-                viewDatabaseAll();
-                viewDatabaseAll();
                 tableScroll(popUpAll);
             }
           }
@@ -880,7 +892,7 @@ function findDate(mm, dd, yy) {
                     vdMonth.value = data.date[0] + data.date[1];
                     vdDay.value = data.date[3] + data.date[4];
                     vdYear.value = data.date[6] + data.date[7];
-                    currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total}`;
+                    currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total.toFixed(2)}`;
                     tableScroll(popUpSearch);
                 })
                 .catch((error) => {

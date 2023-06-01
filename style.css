@@ -493,3 +493,7 @@ form > .datebox > input {
     box-shadow: none;
     border: none;
 }
+
+#top-button {
+    margin-bottom: 10px;
+}
