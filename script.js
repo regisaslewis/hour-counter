@@ -161,7 +161,7 @@ function addTotalTimes() {
     clear.setAttribute("onclick", "clearFunction()");
     document.getElementById("finalDiv").appendChild(clear);
     let addToDB = document.createElement("button");
-    addToDB.innerText = "Place in Database";
+    addToDB.innerText = "Ready for Posting";
     addToDB.setAttribute("id", "add-to-DB");
     addToDB.addEventListener("click", () => {
       dbit();
