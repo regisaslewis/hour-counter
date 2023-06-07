@@ -242,6 +242,7 @@ topButton.addEventListener("click", function () {
     setTimeout(viewDatabaseAll, 550);
     tableScroll(mainHeader);
   } else {
+    closeForm()
     tableScroll(mainHeader);
   }
 });
