@@ -317,7 +317,7 @@ td {
     margin: auto;
 }
 
-#to-server, #date-today, #to-server {
+#to-server, #date-today, #date-yesterday, #to-server {
     font-size: 14px;
     margin: 10px auto;
 }

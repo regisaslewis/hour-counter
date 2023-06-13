@@ -256,6 +256,7 @@ const popUpSearch = document.getElementById("pop-up-search");
 const popUpTotal = document.getElementById("pop-up-total");
 const serverPostBtn = document.getElementById("to-server");
 const dateToday = document.getElementById("date-today");
+const dateYesterday = document.getElementById("date-yesterday");
 const viewDateBtn = document.getElementById("view-date");
 const viewDBAllBtn = document.getElementById("view-db-all");
 const dbTotalBtn = document.getElementById("db-total-hours");
@@ -278,11 +279,11 @@ function isNotAMonth(month) {
 }
 
 function isNotADay(month, day) {
-  if (month.value == 02 && day.value >= 1 && day.value <= 29) {
+  if (month.value == 2 && day.value >= 1 && day.value <= 29) {
     return false;
-  } else if ((month.value == 04 || month.value == 06 || month.value == 09 || month.value == 11) && day.value >= 1 && day.value <= 30) {
+  } else if ((month.value == 4 || month.value == 6 || month.value == 9 || month.value == 11) && day.value >= 1 && day.value <= 30) {
     return false;
-  } else if ((month.value == 01 || month.value == 03 || month.value == 05 || month.value == 07 || month.value == 08 || month.value == 10 || month.value == 12) && day.value >= 1 && day.value <= 31) {
+  } else if ((month.value == 1 || month.value == 3 || month.value == 5 || month.value == 7 || month.value == 8 || month.value == 10 || month.value == 12) && day.value >= 1 && day.value <= 31) {
     return false;
   } else {
     return true;
@@ -596,6 +597,24 @@ function inputTodayDate() {
 }
 
 dateToday.addEventListener("click", inputTodayDate);
+
+function inputYesterdayDate() {
+  let today = new Date().toLocaleDateString();
+  if (today.length === 8) {
+    today = "0" + today;
+    let split = today.split("");
+    split.splice(3, 0, "0");
+    today = split.join("");
+  } else if (today.length === 9) {
+    today = "0" + today;
+  }
+  tdMonth.value = today[0] + today[1];
+  tdDay.value = today[3] + (today[4] -1);
+  tdYear.value = today[8] + today[9];
+  dateToday.blur();
+}
+
+dateYesterday.addEventListener("click", inputYesterdayDate);
 
 // Swap colors for invalid input fields
 
