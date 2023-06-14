@@ -28,15 +28,15 @@
             <div class="input-div">
                 <p>Start Time:</p>
                 <div class="time-input">
-                    <input id="hr1" name="hr1" inputmode="numeric" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('hr1', 'mn1')" required>
+                    <input id="hr1" name="hr1" inputmode="numeric" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('hr1', 'mn1')" required autocomplete="off">
                     <h2 class="colon">:</h2>
-                    <input id="mn1" name="mn1" inputmode="numeric" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('mn1', 'hr2')" onkeydown="deleteBack('mn1', 'hr1')" required>
+                    <input id="mn1" name="mn1" inputmode="numeric" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('mn1', 'hr2')" onkeydown="deleteBack('mn1', 'hr1')" required autocomplete="off">
                 </div>
                 <p>End Time:</p>
                 <div class="time-input">
-                    <input id="hr2" name="hr2" inputmode="numeric" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('hr2', 'mn2')" onkeydown="deleteBack('hr2', 'mn1')" required>
+                    <input id="hr2" name="hr2" inputmode="numeric" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('hr2', 'mn2')" onkeydown="deleteBack('hr2', 'mn1')" required autocomplete="off">
                     <h2 class="colon">:</h2>
-                    <input id="mn2" name="mn2" inputmode="numeric" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('mn2', 'compute')" onkeydown="deleteBack('mn2', 'hr2')" required>
+                    <input id="mn2" name="mn2" inputmode="numeric" placeholder="00" minlength="2" maxlength="2" size="2" onkeyup="autotab('mn2', 'compute')" onkeydown="deleteBack('mn2', 'hr2')" required autocomplete="off">
                     <br>
                 </div>
                 <button id="compute">Compute</button>
