@@ -497,3 +497,8 @@ form > .datebox > input {
 #top-button {
     margin-bottom: 10px;
 }
+
+#fast-buttons {
+    border: none;
+    box-shadow: none;
+}
