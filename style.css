@@ -289,6 +289,7 @@ td {
 
 #database-container {
     width: 85%;
+    min-width: 730px;
     margin: auto;
     margin-bottom: 20px;
     display: flex;
@@ -501,4 +502,11 @@ form > .datebox > input {
 #fast-buttons {
     border: none;
     box-shadow: none;
+    display: flex;
+    flex: row;
+    align-items: center;
+}
+
+#fast-buttons > p {
+    margin: 0 5px;
 }
