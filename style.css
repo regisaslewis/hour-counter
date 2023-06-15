@@ -417,9 +417,16 @@ td {
     transition: transform 02.s;
 }
 
-.data-div:hover, #big-total-div:hover {
+.data-div:hover {
     z-index: 5;
     transform: scale(1.2);
+}
+
+#big-total-div:hover {
+    background-color: salmon;
+    color: rgb(47, 134, 158);
+    transform: scale(1.03);
+    transition: ease-in-out 0.3s;
 }
 
 .hover:hover {
