@@ -1392,6 +1392,104 @@
       "endTime": "20:23",
       "total": 1.43,
       "id": 196
+    },
+    {
+      "date": "06/15/23",
+      "startTime": "15:32",
+      "endTime": "16:40",
+      "total": 1.14,
+      "id": 197
+    },
+    {
+      "date": "06/15/23",
+      "startTime": "20:57",
+      "endTime": "22:16",
+      "total": 1.32,
+      "id": 198
+    },
+    {
+      "date": "06/20/23",
+      "startTime": "16:57",
+      "endTime": "21:21",
+      "total": 4.4,
+      "id": 199
+    },
+    {
+      "date": "06/20/23",
+      "startTime": "01:25",
+      "endTime": "02:30",
+      "total": 1.08,
+      "id": 200
+    },
+    {
+      "date": "06/20/23",
+      "startTime": "21:41",
+      "endTime": "23:30",
+      "total": 1.82,
+      "id": 201
+    },
+    {
+      "date": "07/11/23",
+      "startTime": "16:07",
+      "endTime": "18:54",
+      "total": 2.78,
+      "id": 202
+    },
+    {
+      "date": "07/12/23",
+      "startTime": "14:42",
+      "endTime": "16:52",
+      "total": 2.17,
+      "id": 203
+    },
+    {
+      "date": "08/02/23",
+      "startTime": "12:44",
+      "endTime": "13:45",
+      "total": 1.02,
+      "id": 204
+    },
+    {
+      "date": "08/24/23",
+      "startTime": "18:31",
+      "endTime": "20:35",
+      "total": 2.06,
+      "id": 205
+    },
+    {
+      "date": "08/30/23",
+      "startTime": "14:38",
+      "endTime": "18:22",
+      "total": 3.74,
+      "id": 206
+    },
+    {
+      "date": "09/02/23",
+      "startTime": "23:21",
+      "endTime": "01:47",
+      "total": 2.43,
+      "id": 207
+    },
+    {
+      "date": "09/05/23",
+      "startTime": "15:20",
+      "endTime": "19:20",
+      "total": 4,
+      "id": 208
+    },
+    {
+      "date": "09/05/23",
+      "startTime": "21:40",
+      "endTime": "23:55",
+      "total": 2.25,
+      "id": 209
+    },
+    {
+      "date": "09/06/23",
+      "startTime": "15:03",
+      "endTime": "19:04",
+      "total": 4.02,
+      "id": 210
     }
   ]
 }
