@@ -610,6 +610,9 @@ function inputYesterdayDate() {
   }
   tdMonth.value = today[0] + today[1];
   tdDay.value = today[3] + (today[4] -1);
+  if (tdDay.value = "1-1") {
+    tdDay.value = "09"
+  }
   tdYear.value = today[8] + today[9];
   dateToday.blur();
 }
