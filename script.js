@@ -581,41 +581,48 @@ function dbit() {
 // Single-click date entry
 
 function inputTodayDate() {
-  let today = new Date().toLocaleDateString();
-  if (today.length === 8) {
-    today = "0" + today;
-    let split = today.split("");
-    split.splice(3, 0, "0");
-    today = split.join("");
-  } else if (today.length === 9) {
-    today = "0" + today;
+  let date = new Date();
+  let month = (date.getMonth() + 1).toString();
+  let day = date.getDate().toString();
+  let year = date.getFullYear().toString();
+  if (month.length === 1) {
+    month = "0" + month;
   }
-  tdMonth.value = today[0] + today[1];
-  tdDay.value = today[3] + today[4];
-  tdYear.value = today[8] + today[9];
+  if (day.length === 1) {
+    day = "0" + day;
+  }
+  tdMonth.value = month;
+  tdDay.value = day;
+  tdYear.value = year[2] + year[3]
   dateToday.blur();
 }
 
 dateToday.addEventListener("click", inputTodayDate);
 
 function inputYesterdayDate() {
-  let today = new Date().toLocaleDateString();
-  if (today.length === 8) {
-    today = "0" + today;
-    let split = today.split("");
-    split.splice(3, 0, "0");
-    today = split.join("");
-  } else if (today.length === 9) {
-    today = "0" + today;
+  let date = new Date();
+  let monthNum = date.getMonth() + 1;
+  let month = monthNum.toString();
+  let day = date.getDate();
+  let yesterday = (day - 1).toString();
+  let year = date.getFullYear().toString();
+  if (yesterday.length === 1) {
+    yesterday = "0" + yesterday;
   }
-  tdMonth.value = today[0] + today[1];
-  if (today[4] > 0) {
-    tdDay.value = today[3] + (today[4] -1);
-  } else {
-    tdDay.value = (today[3] - 1) + "9";
+  if (yesterday == "00") {
+    month = (monthNum - 1).toString();
+    yesterday = "31"
   }
-  tdYear.value = today[8] + today[9];
-  dateToday.blur();
+  if (month.length === 1) {
+    month = "0" + month;
+  }
+  if (month == "00") {
+    month = "12";
+  }
+  tdMonth.value = month;
+  tdDay.value = yesterday;
+  tdYear.value = year[2] + year[3]
+  dateYesterday.blur();
 }
 
 dateYesterday.addEventListener("click", inputYesterdayDate);
