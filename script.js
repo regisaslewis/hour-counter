@@ -331,7 +331,7 @@ function closeForm(a=popUpTotal, b=popUpAll, c=popUpTable, d=popUpSearch) {
 // smooth scroll to database fields
 
 function tableScroll(div) {
-  setTimeout(() => div.scrollIntoView({behavior: "smooth"}), 500);
+  setTimeout(() => div.scrollIntoView({behavior: "smooth", block: "end"}), 500);
 }
 
 // error pop-up (have not been able to test yet).
@@ -526,7 +526,7 @@ function viewDatabaseAll() {
                 .catch((error) => {
                   console.log(error.message);
                 })
-                tableScroll(popUpAll);
+                tableScroll(topButton);
             }
           }
 
@@ -539,7 +539,7 @@ function viewDatabaseAll() {
               if (event.key === "Enter") {
                 checkEdit();
                 submitEdit();
-                tableScroll(popUpAll);
+                tableScroll(topButton);
               }
             })        
           }
@@ -558,7 +558,7 @@ function viewDatabaseAll() {
 
 viewDBAllBtn.addEventListener("click", () => {
   viewDatabaseAll();  
-  tableScroll(popUpAll);
+  tableScroll(topButton);
 });
 
 // Add from Today to the Database
