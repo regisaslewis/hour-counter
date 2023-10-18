@@ -238,6 +238,7 @@ setInterval(showSeconds, 1000);
 
 topButton.addEventListener("click", function () {
   topButton.blur();
+  popUpTotal.textContent = ""
   if (viewDBAllBtn.textContent === "Close the database") {
     setTimeout(viewDatabaseAll, 550);
     tableScroll(mainHeader);
@@ -574,7 +575,7 @@ function dbit() {
     popUpTable.style.display = "grid";
     closeForm(hiddenForm, popUpAll, popUpSearch, popUpTotal);
     popUpTotal.textContent = "";
-    tableScroll(popUpTable);
+    tableScroll(topButton);
   })
 }
 
@@ -924,7 +925,7 @@ function findDate(mm, dd, yy) {
                     vdDay.value = data.date[3] + data.date[4];
                     vdYear.value = data.date[6] + data.date[7];
                     currentDiv.innerText = `Date: ${data.date}  \n Start Time: ${data.startTime} \n End Time: ${data.endTime} \n Total Hours: ${data.total.toFixed(2)}`;
-                    tableScroll(popUpSearch);
+                    tableScroll(topButton);
                 })
                 .catch((error) => {
                   console.log(error.message);
@@ -984,7 +985,7 @@ viewDateBtn.addEventListener("click", () => {
     document.getElementById("vdcb").remove();
   }
   findDate();
-  tableScroll(popUpSearch);
+  tableScroll(topButton);
   viewDateBtn.blur();
 })
 
@@ -1021,7 +1022,7 @@ function completeTotal() {
 
 dbTotalBtn.addEventListener("click", () => {
   completeTotal();
-  tableScroll(popUpTotal);
+  tableScroll(topButton);
   dbTotalBtn.blur();
 })
 
