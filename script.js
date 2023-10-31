@@ -240,11 +240,11 @@ topButton.addEventListener("click", function () {
   topButton.blur();
   popUpTotal.textContent = ""
   if (viewDBAllBtn.textContent === "Close the database") {
-    setTimeout(viewDatabaseAll, 550);
     tableScroll(mainHeader);
+    setTimeout(viewDatabaseAll, 950);
   } else {
-    closeForm()
     tableScroll(mainHeader);
+    setTimeout(closeForm(), 950)
   }
 });
 
