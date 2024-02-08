@@ -2050,6 +2050,41 @@
       "endTime": "16:58",
       "total": 4.3,
       "id": 290
+    },
+    {
+      "date": "02/02/24",
+      "startTime": "10:47",
+      "endTime": "16:29",
+      "total": 5.7,
+      "id": 291
+    },
+    {
+      "date": "02/02/24",
+      "startTime": "17:23",
+      "endTime": "19:49",
+      "total": 2.44,
+      "id": 292
+    },
+    {
+      "date": "02/05/24",
+      "startTime": "20:34",
+      "endTime": "02:38",
+      "total": 6.06,
+      "id": 293
+    },
+    {
+      "date": "02/06/24",
+      "startTime": "12:26",
+      "endTime": "20:57",
+      "total": 8.52,
+      "id": 294
+    },
+    {
+      "date": "02/07/24",
+      "startTime": "15:45",
+      "endTime": "19:15",
+      "total": 3.5,
+      "id": 295
     }
   ]
 }
