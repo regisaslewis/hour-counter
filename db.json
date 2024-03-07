@@ -2113,6 +2113,48 @@
       "endTime": "23:07",
       "total": 5.9,
       "id": 299
+    },
+    {
+      "date": "02/21/24",
+      "startTime": "00:13",
+      "endTime": "02:43",
+      "total": 2.5,
+      "id": 300
+    },
+    {
+      "date": "02/21/24",
+      "startTime": "00:13",
+      "endTime": "02:43",
+      "total": 2.5,
+      "id": 301
+    },
+    {
+      "date": "02/21/24",
+      "startTime": "12:49",
+      "endTime": "14:00",
+      "total": 1.18,
+      "id": 302
+    },
+    {
+      "date": "02/21/24",
+      "startTime": "14:00",
+      "endTime": "14:55",
+      "total": 0.92,
+      "id": 303
+    },
+    {
+      "date": "03/06/24",
+      "startTime": "10:50",
+      "endTime": "11:55",
+      "total": 1.09,
+      "id": 304
+    },
+    {
+      "date": "03/07/24",
+      "startTime": "11:07",
+      "endTime": "14:49",
+      "total": 3.7,
+      "id": 305
     }
   ]
 }
